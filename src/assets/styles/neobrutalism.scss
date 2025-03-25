@@ -1,0 +1,40 @@
+.neobrutalism {
+  .photo-menu {
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px 0px #1f1f1f;
+    border-radius: 50%;
+  }
+
+  .menu-items {
+    .menu-item {
+      color: #b1b1b1;
+
+      &.selected {
+        border-width: 3px !important;
+        box-shadow: 5px 5px 0px 0px #1f1f1f;
+        color: #5093fe;
+      }
+    }
+  }
+
+  .span-section-home {
+    color: #5093fe;
+  }
+
+  .name-section-home {
+    color: #000;
+  }
+
+  .text-section-home {
+    color: #b1b1b1;
+  }
+
+  .label {
+    border-radius: 8px !important;
+    box-shadow: 5px 5px 0px 0px #1f1f1f !important;
+    border: 3px solid black !important;
+  }
+  .label-internal {
+    background-color: #f2f2f2;
+  }
+}

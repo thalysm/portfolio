@@ -1,0 +1,56 @@
+.glassmorphism {
+  // .menu {
+  //   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+  //   backdrop-filter: blur(10px);
+  //   border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  // }
+  .photo-menu {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.55) !important;
+    border-radius: 50px;
+    color: #fff;
+  }
+
+  .menu-items {
+    .menu-item {
+      color: #fff;
+
+      &.selected {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 5px;
+        color: #fff;
+      }
+    }
+  }
+
+  .span-section-home {
+    color: #fff;
+  }
+
+  .name-section-home {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  .text-section-home {
+    color: #fff;
+  }
+
+  .label {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50px;
+    color: #fff;
+    transition: background 0.3s ease-in-out;
+  }
+  .label-internal {
+    background-color: #ffffff00;
+  }
+}

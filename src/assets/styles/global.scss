@@ -1,0 +1,86 @@
+@import url(neobrutalism.scss);
+@import url(flat.scss);
+@import url(glassmorphism.scss);
+@import url(neomorphism.scss);
+body {
+  background-color: #f2f2f2;
+  margin: 0;
+  // background-image: url('/src/assets/images/Glassmorphismbg.svg');
+  // background-position: center;
+  // background-size: cover;
+}
+h1,
+p {
+  margin: 0;
+}
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  .hidden-photo {
+    visibility: hidden;
+  }
+  .menu-items {
+    display: flex;
+    align-items: center;
+    .menu-item {
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px 25px;
+      &.selected {
+        border: 1px solid black;
+      }
+    }
+  }
+}
+
+.section-home {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  max-width: 1000px;
+  margin-top: 100px;
+}
+.label {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  margin-right: 20px;
+  margin-top: 15px;
+  border: 1px solid black;
+  p {
+    margin-left: 10px;
+  }
+}
+.label-internal {
+  display: flex;
+  align-items: center;
+}
+.hability-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .label {
+    white-space: nowrap;
+  }
+  .label:first-child {
+    margin-left: 0;
+  }
+}
+.photo-section-home {
+  width: 400px;
+  margin-left: 20px;
+}
+.span-section-home {
+  font-size: 16px;
+}
+.name-section-home {
+  font-size: 65px;
+}
+.text-section-home {
+  font-size: 16px;
+}

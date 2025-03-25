@@ -1,0 +1,131 @@
+.neomorphism {
+  // .menu {
+  //   background: #e8e8e8;
+  //   border: 1px solid #e8e8e8 !important;
+  //   transition: all 0.3s;
+  //   box-shadow:
+  //     1px 1px 1px #919191,
+  //     -3px -3px 5px #fff;
+  // }
+  .photo-menu {
+    background: #eeeeee;
+    border-radius: 100% !important;
+    border: 1px solid #e8e8e8 !important;
+    transition: all 0.3s;
+    box-shadow:
+      1px 1px 1px #e8e8e8,
+      -1px -1px 2px #00000010;
+  }
+
+  .menu-items {
+    .menu-item {
+      color: #b1b1b1;
+      border: 0px;
+
+      &.selected {
+        color: #5093fe;
+        padding: 0.7em 1.7em;
+        font-size: 18px;
+        border-radius: 0.5em;
+        background: #e8e8e8;
+        cursor: pointer;
+        border: 1px solid #e8e8e8 !important;
+        transition: all 0.3s;
+        box-shadow:
+          1px 1px 1px #919191,
+          -3px -3px 5px #fff;
+      }
+    }
+  }
+
+  .span-section-home {
+    color: #5093fe;
+  }
+
+  .name-section-home {
+    color: #000;
+  }
+
+  .text-section-home {
+    color: #b1b1b1;
+  }
+
+  .label {
+    border-radius: 20px !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    box-shadow:
+      inset 2px 2px 2px #e6e5e5,
+      inset -2px -2px 2px #ffffff,
+      2px 2px 5px #e1e1e1,
+      -2px -2px 5px #ffffff;
+    background-color: #f2f2f2;
+    border-radius: 50px;
+  }
+  .label-internal {
+    border-radius: 5px !important;
+  }
+
+  /*  SWITCH  */
+  .switch {
+    grid-column: 1 / 2;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-gap: 3rem;
+    justify-self: center;
+    input {
+      display: none;
+    }
+
+    &__1,
+    &__2 {
+      width: 6rem;
+      label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 3rem;
+        box-shadow:
+          0.3rem 0.3rem 0.6rem #c8d0e7,
+          -0.2rem -0.2rem 0.5rem #fff;
+        $inner-shadow:
+          inset 0.2rem 0.2rem 0.5rem #c8d0e7,
+          inset -0.2rem -0.2rem 0.5rem #fff;
+        background: rgba(255, 255, 255, 0);
+        position: relative;
+        cursor: pointer;
+        border-radius: 1.6rem;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0.4rem;
+          width: 2.1rem;
+          height: 2.1rem;
+          border-radius: 50%;
+          background: #5093fe;
+          transition: all 0.4s ease;
+        }
+        &::before {
+          content: '';
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+          background: linear-gradient(330deg, #5093fe 0%, #3c85fb 50%, #619eff 100%);
+          opacity: 0;
+          transition: all 0.4s ease;
+        }
+      }
+    }
+    & input:checked {
+      & ~ label {
+        &::before {
+          opacity: 1;
+        }
+        &::after {
+          left: 57%;
+          background: #e4ebf5;
+        }
+      }
+    }
+  }
+}
