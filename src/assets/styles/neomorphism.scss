@@ -225,4 +225,11 @@
       color: #b1b1b1;
     }
   }
+
+  .menu.is-scrolled {
+    background-color: #f2f2f2;
+    box-shadow:
+      2px 2px 5px #e1e1e1,
+      -2px -2px 5px #ffffff;
+  }
 }

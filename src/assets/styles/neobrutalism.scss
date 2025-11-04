@@ -121,4 +121,10 @@
       color: #333;
     }
   }
+
+  .menu.is-scrolled {
+    background-color: #f2f2f2;
+    border-bottom: 3px solid #000;
+    box-shadow: none;
+  }
 }

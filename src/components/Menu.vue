@@ -5,6 +5,7 @@ import PhotoMenu from '@/assets/images/PhotoMenu.png'
 
 const isMobileMenuOpen = ref(false)
 const selectedItem = ref('home')
+const isScrolled = ref(false) // <-- Adicionado
 
 const sections = ['home', 'resume', 'projects', 'blog', 'contact']
 
@@ -14,6 +15,11 @@ const closeMobileMenu = () => {
 
 const handleScroll = () => {
   const scrollY = window.scrollY
+
+  // Lógica para o menu fixo
+  isScrolled.value = scrollY > 10 // <-- Adicionado (true se rolar > 10px)
+
+  // Lógica existente para destacar a seção
   let currentSection = ''
   const offset = 150
 
@@ -39,7 +45,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <header class="menu">
+  <header class="menu" :class="{ 'is-scrolled': isScrolled }">
     <img :src="PhotoMenu" class="photo-menu" />
 
     <button class="menu-toggle" @click="isMobileMenuOpen = !isMobileMenuOpen">
