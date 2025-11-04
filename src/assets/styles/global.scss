@@ -1,7 +1,6 @@
 body {
   background-color: #f2f2f2;
   margin: 0;
-
   transition: background 0.5s ease;
 }
 
@@ -16,12 +15,15 @@ p {
 }
 * {
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 .menu {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   padding: 20px;
+  position: relative;
+
   .hidden-photo {
     visibility: hidden;
   }
@@ -37,6 +39,32 @@ p {
       }
     }
   }
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+  }
+}
+
+/* Ajuste específico para Glassmorphism (ícone branco) */
+.glassmorphism .menu-toggle span {
+  background-color: #fff;
+}
+/* Ajuste específico para Neobrutalism (ícone preto) */
+.neobrutalism .menu-toggle span {
+  background-color: #000;
 }
 
 .section-home {
@@ -84,4 +112,135 @@ p {
 }
 .text-section-home {
   font-size: 16px;
+}
+
+/* ---------------------------------------------- */
+/* --- Media Queries para Responsividade --- */
+/* ---------------------------------------------- */
+
+@media (max-width: 768px) {
+  .menu {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .menu-toggle {
+    display: flex;
+    z-index: 1100;
+  }
+
+  .hidden-photo {
+    display: none;
+  }
+
+  .menu-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 20px;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out;
+    z-index: 1050;
+
+    background-color: #f2f2f2;
+  }
+
+  .menu-items.is-open {
+    transform: translateY(0);
+  }
+
+  .menu-item {
+    padding: 10px 20px;
+    text-align: center;
+    width: 80%;
+  }
+
+  .glassmorphism .menu-items {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+
+  .neobrutalism .menu-items {
+    background-color: #f2f2f2;
+    border-bottom: 3px solid #000;
+  }
+
+  .section-home {
+    flex-direction: column-reverse;
+    margin-top: 50px;
+    padding: 0 20px;
+  }
+
+  .photo-section-home {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    margin-left: 0;
+    margin-bottom: 30px;
+  }
+
+  .name-section-home {
+    font-size: 48px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .span-section-home {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .text-section-home {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .hability-list {
+    justify-content: center;
+    margin-top: 30px;
+    gap: 5px;
+  }
+
+  .label {
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-button {
+    bottom: 20px;
+    right: 20px;
+
+    flex-direction: column;
+
+    gap: 8px;
+    z-index: 1200;
+  }
+
+  .theme-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .theme-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .theme-button.glassmorphism svg {
+    width: 20px;
+    height: 20px;
+  }
 }
