@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 import ThemeButton from './components/ThemeButton.vue'
 
 const styles = {
@@ -11,7 +11,6 @@ const styles = {
 }
 
 const currentStyle = ref(styles.NEOBRUTALISM)
-
 const themePortfolio = 'themePortfolio'
 
 onMounted(() => {
@@ -19,13 +18,28 @@ onMounted(() => {
 })
 
 const getStyle = (style) => {
+  localStorage.setItem(themePortfolio, style)
   return (currentStyle.value = style)
 }
+
+watchEffect(() => {
+  document.body.classList.remove(
+    'theme-glassmorphism',
+    'theme-flat',
+    'theme-neomorphism',
+    'theme-neobrutalism'
+  )
+
+  if (currentStyle.value) {
+    document.body.classList.add(`theme-${currentStyle.value}`)
+  }
+})
 </script>
 
 <template>
   <div>
-    <RouterView :class="currentStyle" />
+    <RouterView :class="currentStyle" :currentStyle="currentStyle" />
+
     <ThemeButton @change-style="getStyle" :currentStyle="currentStyle" />
   </div>
 </template>

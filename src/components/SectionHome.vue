@@ -1,11 +1,17 @@
 <script setup>
-// import PhotoSectionHome from '@/assets/images/PhotoSectionHome.png'
+import { computed } from 'vue'
+
+const props = defineProps({
+  currentStyle: String
+})
+
 const photosSectionHome = {
   NEOBRUTALISM: new URL('/src/assets/images/PhotoSectionHome.png', import.meta.url),
   NEOMORPHISM: new URL('/src/assets/images/PhotoSectionHomeNeomorphism.png', import.meta.url),
   GLASSMORPHISM: new URL('/src/assets/images/PhotoSectionHomeGlassmorphism.png', import.meta.url),
   FLAT: new URL('/src/assets/images/PhotoSectionHomeFlat.png', import.meta.url)
 }
+
 const habilities = [
   {
     name: 'JavaScript',
@@ -32,6 +38,11 @@ const habilities = [
     icon: new URL('/src/assets/images/adobexd.svg', import.meta.url)
   }
 ]
+
+const dynamicPhotoSrc = computed(() => {
+  const styleKey = props.currentStyle ? props.currentStyle.toUpperCase() : 'NEOBRUTALISM'
+  return photosSectionHome[styleKey] || photosSectionHome.NEOBRUTALISM
+})
 </script>
 
 <template>
@@ -58,6 +69,6 @@ const habilities = [
         </div>
       </div>
     </div>
-    <img :src="photosSectionHome.FLAT" class="photo-section-home" />
+    <img :src="dynamicPhotoSrc" class="photo-section-home" />
   </section>
 </template>

@@ -1,27 +1,39 @@
+body.theme-glassmorphism {
+  background-image: radial-gradient(
+    circle at 10% 20%,
+    rgb(0, 102, 161) 0%,
+    rgb(0, 68, 108) 15.9%,
+    rgb(0, 41, 64) 30.5%,
+    rgb(0, 0, 0) 50.2%,
+    rgb(0, 41, 64) 71.9%,
+    rgb(0, 68, 108) 85.5%,
+    rgb(0, 102, 161) 100.2%
+  );
+  min-height: 100vh;
+}
 .glassmorphism {
-  // .menu {
-  //   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
-  //   backdrop-filter: blur(10px);
-  //   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  // }
   .photo-menu {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     border-radius: 50px;
     color: #fff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
 
   .menu-items {
     .menu-item {
       color: #fff;
+      font-weight: 500;
 
       &.selected {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+        background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
         border-radius: 5px;
         color: #fff;
+        font-weight: 700;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       }
     }
   }
@@ -31,24 +43,22 @@
   }
 
   .name-section-home {
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
-    background-clip: text !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   }
 
   .text-section-home {
-    color: #fff;
+    color: #eee;
   }
 
   .label {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     border-radius: 50px;
     color: #fff;
     transition: background 0.3s ease-in-out;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
   .label-internal {
     background-color: #ffffff00;
