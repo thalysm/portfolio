@@ -215,4 +215,14 @@
       }
     }
   }
+
+  .footer {
+    border-top: 2px solid rgb(255, 255, 255);
+    box-shadow:
+      inset 0px 2px 2px #e6e5e5,
+      inset 0px -2px 2px #ffffff;
+    .footer-content p {
+      color: #b1b1b1;
+    }
+  }
 }

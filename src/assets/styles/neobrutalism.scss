@@ -114,4 +114,11 @@
     border: 3px solid black;
     box-shadow: 5px 5px 0px 0px #1f1f1f;
   }
+
+  .footer {
+    border-top: 3px solid #000;
+    .footer-content p {
+      color: #333;
+    }
+  }
 }

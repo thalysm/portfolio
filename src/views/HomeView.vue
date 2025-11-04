@@ -5,6 +5,7 @@ import SectionResume from '@/components/SectionResume.vue'
 import SectionProjects from '@/components/SectionProjects.vue'
 import SectionBlog from '@/components/SectionBlog.vue'
 import SectionContact from '@/components/SectionContact.vue'
+import Footer from '@/components/Footer.vue'
 
 defineProps({
   currentStyle: String
@@ -19,5 +20,6 @@ defineProps({
     <SectionProjects :currentStyle="currentStyle" id="projects" />
     <SectionBlog :currentStyle="currentStyle" id="blog" />
     <SectionContact :currentStyle="currentStyle" id="contact" />
+    <Footer :currentStyle="currentStyle" />
   </main>
 </template>
