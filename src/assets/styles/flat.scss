@@ -38,4 +38,64 @@
   .label-internal {
     background-color: #f2f2f2;
   }
+
+  .section-title {
+    color: #000;
+  }
+
+  .resume-subtitle {
+    border-color: #e9e9e9;
+    color: #5093fe;
+  }
+
+  .resume-item {
+    border-color: #e9e9e9;
+    background-color: #f2f2f2;
+    h5 {
+      color: #b1b1b1;
+    }
+    p {
+      color: #b1b1b1;
+    }
+  }
+
+  .project-card {
+    border-color: #e9e9e9;
+    background: #f2f2f2;
+    p {
+      color: #b1b1b1;
+    }
+  }
+
+  .blog-card {
+    border-color: #e9e9e9;
+    background: #f2f2f2;
+    .blog-date {
+      color: #b1b1b1;
+    }
+    p {
+      color: #b1b1b1;
+    }
+  }
+
+  .tag {
+    background: #e9e9e9;
+    color: #5093fe;
+  }
+
+  .contact-content > p {
+    color: #b1b1b1;
+  }
+
+  .form-input,
+  .form-textarea {
+    border-color: #e9e9e9;
+    background-color: #f2f2f2;
+  }
+
+  .submit-button {
+    background: #5093fe;
+    color: #fff;
+    border: 1px solid #e9e9e9;
+  }
 }

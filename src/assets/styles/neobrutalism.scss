@@ -37,4 +37,81 @@
   .label-internal {
     background-color: #f2f2f2;
   }
+
+  .section-title {
+    color: #000;
+  }
+
+  .resume-subtitle {
+    border-color: #000;
+    color: #000;
+  }
+
+  .resume-item {
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px 0px #1f1f1f;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    h5 {
+      color: #555;
+    }
+    p {
+      color: #333;
+    }
+  }
+
+  .project-card {
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px 0px #1f1f1f;
+    background: #f2f2f2;
+    border-radius: 8px;
+    p {
+      color: #333;
+    }
+  }
+
+  .project-image {
+    border-bottom: 3px solid black;
+  }
+
+  .blog-card {
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px 0px #1f1f1f;
+    background: #f2f2f2;
+    border-radius: 8px;
+    .blog-date {
+      color: #555;
+    }
+    p {
+      color: #333;
+    }
+  }
+
+  .blog-image {
+    border-bottom: 3px solid black;
+  }
+
+  .tag {
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+  }
+
+  .contact-content > p {
+    color: #333;
+  }
+
+  .form-input,
+  .form-textarea {
+    border: 3px solid black;
+    background-color: #f2f2f2;
+    box-shadow: 5px 5px 0px 0px #1f1f1f;
+  }
+
+  .submit-button {
+    background: #5093fe;
+    color: #000;
+    border: 3px solid black;
+    box-shadow: 5px 5px 0px 0px #1f1f1f;
+  }
 }

@@ -63,4 +63,99 @@ body.theme-glassmorphism {
   .label-internal {
     background-color: #ffffff00;
   }
+
+  .section-title {
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .resume-subtitle {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+
+  .resume-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    h4 {
+      color: #fff;
+    }
+    h5 {
+      color: #ddd;
+    }
+    p {
+      color: #eee;
+    }
+  }
+
+  .project-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      color: #fff;
+    }
+    p {
+      color: #eee;
+    }
+  }
+
+  .blog-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    .blog-date {
+      color: #ddd;
+    }
+    h3 {
+      color: #fff;
+    }
+    p {
+      color: #eee;
+    }
+  }
+
+  .tag {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .contact-content > p {
+    color: #eee;
+  }
+
+  .form-group label {
+    color: #fff;
+  }
+
+  .form-input,
+  .form-textarea {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff;
+    border-radius: 5px;
+
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+
+  .submit-button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #fff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
 }

@@ -1,12 +1,4 @@
 .neomorphism {
-  // .menu {
-  //   background: #e8e8e8;
-  //   border: 1px solid #e8e8e8 !important;
-  //   transition: all 0.3s;
-  //   box-shadow:
-  //     1px 1px 1px #919191,
-  //     -3px -3px 5px #fff;
-  // }
   .photo-menu {
     background: #eeeeee;
     border-radius: 100% !important;
@@ -65,7 +57,102 @@
     border-radius: 5px !important;
   }
 
-  /*  SWITCH  */
+  .section-title {
+    color: #000;
+  }
+
+  .resume-subtitle {
+    border-color: #ccc;
+    color: #5093fe;
+  }
+
+  .resume-item {
+    border-radius: 20px !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    box-shadow:
+      inset 2px 2px 2px #e6e5e5,
+      inset -2px -2px 2px #ffffff,
+      2px 2px 5px #e1e1e1,
+      -2px -2px 5px #ffffff;
+    background-color: #f2f2f2;
+    border-radius: 20px;
+
+    h5 {
+      color: #b1b1b1;
+    }
+    p {
+      color: #b1b1b1;
+    }
+  }
+
+  .project-card {
+    border-radius: 20px !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    box-shadow:
+      2px 2px 5px #e1e1e1,
+      -2px -2px 5px #ffffff;
+    background-color: #f2f2f2;
+
+    p {
+      color: #b1b1b1;
+    }
+  }
+
+  .blog-card {
+    border-radius: 20px !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    box-shadow:
+      2px 2px 5px #e1e1e1,
+      -2px -2px 5px #ffffff;
+    background-color: #f2f2f2;
+
+    .blog-date {
+      color: #b1b1b1;
+    }
+    p {
+      color: #b1b1b1;
+    }
+  }
+
+  .tag {
+    background: #e8e8e8;
+    color: #5093fe;
+    box-shadow:
+      1px 1px 1px #919191,
+      -3px -3px 5px #fff;
+    border-radius: 5px;
+    padding: 4px 8px;
+  }
+
+  .contact-content > p {
+    color: #b1b1b1;
+  }
+
+  .form-input,
+  .form-textarea {
+    border-radius: 10px !important;
+    border: 2px solid rgb(255, 255, 255) !important;
+    box-shadow:
+      inset 2px 2px 2px #e6e5e5,
+      inset -2px -2px 2px #ffffff;
+    background-color: #f2f2f2;
+  }
+
+  .submit-button {
+    color: #5093fe;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    cursor: pointer;
+    border: 1px solid #e8e8e8 !important;
+    transition: all 0.3s;
+    box-shadow:
+      1px 1px 1px #919191,
+      -3px -3px 5px #fff;
+  }
+
+  /* SWITCH  */
   .switch {
     grid-column: 1 / 2;
     display: grid;
