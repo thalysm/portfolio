@@ -1,4 +1,7 @@
 <script setup>
+import educationIcon from '@/assets/icons/Education.svg?url'
+import experienceIcon from '@/assets/icons/Experience.svg?url'
+
 defineProps({
   currentStyle: String
 })
@@ -34,7 +37,14 @@ const education = [
     <h2 class="section-title">Resume</h2>
     <div class="resume-timeline-wrapper">
       <div class="timeline-group education-group">
-        <h3 class="resume-subtitle timeline-header">Education</h3>
+        <div class="resume-subtitle timeline-header header-education">
+          <div class="header-content header-education">
+            <h3 class="title-text">Education</h3>
+            <div class="icon-circle">
+              <img :src="educationIcon" alt="Education Icon" />
+            </div>
+          </div>
+        </div>
         <div v-for="edu in education" :key="edu.institution" class="timeline-item timeline-left">
           <div class="timeline-dot"></div>
           <div class="timeline-content resume-item">
@@ -45,7 +55,14 @@ const education = [
       </div>
 
       <div class="timeline-group experience-group">
-        <h3 class="resume-subtitle timeline-header">Experience</h3>
+        <div class="resume-subtitle timeline-header header-experience">
+          <div class="header-content header-experience">
+            <div class="icon-circle">
+              <img :src="experienceIcon" alt="Experience Icon" />
+            </div>
+            <h3 class="title-text">Experience</h3>
+          </div>
+        </div>
         <div v-for="exp in experiences" :key="exp.company" class="timeline-item timeline-right">
           <div class="timeline-dot"></div>
           <div class="timeline-content resume-item">

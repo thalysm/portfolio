@@ -156,9 +156,6 @@ h5 {
 }
 
 /* --- Resume Section (Central Timeline Style) --- */
-.resume-content {
-  /* Não mais usado na nova estrutura de timeline */
-}
 
 .resume-timeline-wrapper {
   position: relative;
@@ -210,15 +207,39 @@ h5 {
 .timeline-header {
   text-align: center;
   margin-bottom: 30px;
-
   background-color: #f2f2f2; /* Cor de fundo do body */
   display: inline-block;
-  padding: 0 20px;
   position: relative;
-  left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   border: none;
+}
+
+.header-content {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.resume-subtitle.timeline-header.header-education {
+  left: 42.5%;
+}
+
+.resume-subtitle.timeline-header.header-experience {
+  left: 58%;
+}
+
+.icon-circle {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: #1f1f1f;
 }
 
 .timeline-item {
@@ -620,14 +641,6 @@ h5 {
     }
   }
 
-  .timeline-header {
-    left: 0;
-    transform: none;
-    text-align: left;
-    margin-left: 30px; /* Alinha o conteúdo do cabeçalho ao lado da linha */
-    padding-left: 0;
-  }
-
   .timeline-item {
     width: 100%;
     padding-left: 50px; /* Conteúdo movido para a direita */
@@ -708,5 +721,10 @@ h5 {
   .theme-button.glassmorphism svg {
     width: 20px;
     height: 20px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
   }
 }
