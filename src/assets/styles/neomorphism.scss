@@ -64,6 +64,27 @@
   .resume-subtitle {
     border-color: #ccc;
     color: #5093fe;
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  .resume-timeline-wrapper::after {
+    content: none; /* Remover a linha global */
+  }
+  .timeline-group::after {
+    background: #e0e0e0; /* Cor da linha do grupo */
+  }
+
+  .timeline-dot {
+    background-color: #5093fe;
+    border: 3px solid #f2f2f2;
+    box-shadow:
+      1px 1px 1px #919191,
+      -3px -3px 5px #fff;
+  }
+  .timeline-item::after {
+    background-color: #e1e1e1;
   }
 
   .resume-item {

@@ -90,9 +90,11 @@ h5 {
 .section-home {
   display: flex;
   align-items: center;
+  min-height: 100vh; /* NOVO: Garante altura total */
+  padding: 80px 0; /* NOVO: Adiciona padding */
   margin: auto;
   max-width: 1000px;
-  margin-top: 100px;
+  margin-top: 0; /* AJUSTADO: Remove margem superior desnecessária com min-height */
   scroll-margin-top: 100px;
 }
 .label {
@@ -136,6 +138,10 @@ h5 {
 }
 
 .section-padding {
+  min-height: 100vh; /* NOVO: Garante altura total */
+  display: flex; /* NOVO: Para centralizar o conteúdo */
+  flex-direction: column; /* NOVO: Para centralizar o conteúdo */
+  justify-content: center; /* NOVO: Centraliza o conteúdo verticalmente */
   padding: 80px 0;
   margin: auto;
   max-width: 1000px;
@@ -149,29 +155,141 @@ h5 {
   margin-bottom: 50px;
 }
 
-/* --- Resume Section --- */
+/* --- Resume Section (Central Timeline Style) --- */
 .resume-content {
-  display: flex;
-  gap: 40px;
+  /* Não mais usado na nova estrutura de timeline */
 }
 
-.resume-column {
-  flex: 1;
+.resume-timeline-wrapper {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-.resume-subtitle {
-  font-size: 24px;
-  font-weight: 600;
+/* Linha central da Timeline - REMOVIDA A LINHA GLOBAL */
+.resume-timeline-wrapper::after {
+  content: none;
+}
+
+.timeline-group {
+  position: relative;
+  margin-bottom: 40px;
+  /* NOVA LINHA: Adicionando a linha vertical a cada grupo */
+  &::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #e0e0e0; /* Cor padrão da linha */
+    top: 0;
+    bottom: 0; /* Linha se estende até o final do grupo */
+    left: 50%;
+    margin-left: -2px;
+    z-index: 1;
+  }
+}
+
+/* NOVO: Elemento de bloqueio para esconder a linha abaixo do último dot */
+.timeline-group .timeline-item:last-child {
+  /* Use ::after do último item para bloquear a linha */
+  &::after {
+    content: '';
+    position: absolute;
+    /* Posição sobre a linha (left: 50%; margin-left: -2px) */
+    left: 50%;
+    margin-left: -2px;
+    width: 4px;
+    height: 100vh; /* Alto o suficiente para cobrir o restante do grupo */
+    z-index: 10; /* Maior que a linha (z-index: 1) */
+    top: 50px; /* Ponto de início (seguro abaixo do dot) */
+    /* A cor de fundo será definida nos arquivos de tema */
+  }
+}
+
+/* Posicionamento do cabeçalho sobre a linha */
+.timeline-header {
+  text-align: center;
+  margin-bottom: 30px;
+
+  background-color: #f2f2f2; /* Cor de fundo do body */
+  display: inline-block;
+  padding: 0 20px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  border: none;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
   margin-bottom: 20px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid;
+  z-index: 5;
 }
 
+/* NOVO: Remove bottom margin from the last item in a group */
+.timeline-group .timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Conteúdo à Esquerda */
+.timeline-left {
+  left: 0;
+  padding-right: 50px;
+  text-align: right;
+
+  .timeline-dot {
+    right: -8px; /* CORRIGIDO: 16px (dot width) / 2 = 8px para centralizar na linha */
+    left: auto;
+    border-color: #f2f2f2;
+  }
+  /* O conteúdo em si (o card) deve ter o texto alinhado à esquerda internamente */
+  .timeline-content {
+    text-align: left;
+  }
+}
+
+.timeline-left::after {
+  right: -20px; /* Posição da linha de conexão com a linha central */
+  left: auto;
+}
+
+/* Conteúdo à Direita */
+.timeline-right {
+  left: 50%;
+  padding-left: 50px;
+  text-align: left;
+
+  .timeline-dot {
+    left: -8px; /* CORRIGIDO: 16px (dot width) / 2 = 8px para centralizar na linha */
+    border-color: #f2f2f2;
+  }
+}
+
+.timeline-right::after {
+  left: -20px; /* Posição da linha de conexão com a linha central */
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  background-color: #5093fe; /* Cor de destaque */
+  border-radius: 50%;
+  border: 3px solid #f2f2f2; /* Cor de fundo do body para o efeito de "borda" */
+  z-index: 10;
+}
+
+/* --- Resume Item Styling --- */
 .resume-item {
   padding: 20px;
-  margin-bottom: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+  margin-bottom: 0;
+  text-align: left; /* Mantém o texto alinhado à esquerda dentro do card */
 
   h4 {
     font-size: 18px;
@@ -434,9 +552,14 @@ h5 {
 
   .section-home {
     flex-direction: column-reverse;
+    min-height: auto; /* Remove altura fixa no mobile */
     margin-top: 50px;
     padding: 0 20px;
     scroll-margin-top: 80px;
+  }
+  .section-padding {
+    min-height: auto; /* Remove altura fixa no mobile */
+    justify-content: flex-start;
   }
 
   .photo-section-home {
@@ -476,7 +599,74 @@ h5 {
     margin-top: 10px;
   }
 
-  /* --- Media Queries for New Sections --- */
+  /* --- Mobile Timeline: Stacked Single Column (Fall-back) --- */
+  .resume-timeline-wrapper::after {
+    /* left: 10px; REMOVIDO */
+    content: none;
+  }
+
+  .timeline-group::after {
+    /* Linha à esquerda no mobile */
+    left: 10px;
+    margin-left: -2px;
+    bottom: 0; /* Linha se estende até o final do grupo */
+  }
+
+  .timeline-group .timeline-item:last-child {
+    &::after {
+      left: 10px; /* Alinhado com a linha mobile */
+      margin-left: -2px; /* Centraliza o elemento de 4px na linha */
+      top: 50px; /* Ponto de início */
+    }
+  }
+
+  .timeline-header {
+    left: 0;
+    transform: none;
+    text-align: left;
+    margin-left: 30px; /* Alinha o conteúdo do cabeçalho ao lado da linha */
+    padding-left: 0;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px; /* Conteúdo movido para a direita */
+    padding-right: 10px;
+    left: 0;
+    text-align: left;
+  }
+
+  .timeline-left {
+    padding-right: 10px;
+    text-align: left; /* Texto sempre à esquerda no mobile */
+  }
+
+  .timeline-left::after {
+    right: auto;
+    left: 20px; /* Conector alinhado à esquerda */
+  }
+
+  .timeline-right {
+    padding-left: 50px;
+    text-align: left;
+    left: 0;
+  }
+
+  .timeline-right::after {
+    left: 20px;
+  }
+
+  .timeline-dot {
+    left: 2px !important;
+    right: auto !important;
+    border-color: #f2f2f2;
+  }
+
+  .resume-item {
+    text-align: left;
+  }
+
+  /* --- Other Mobile Sections --- */
   .section-padding {
     padding: 60px 20px;
     scroll-margin-top: 80px;
@@ -485,11 +675,6 @@ h5 {
   .section-title {
     font-size: 36px;
     margin-bottom: 40px;
-  }
-
-  .resume-content {
-    flex-direction: column;
-    gap: 30px;
   }
 
   .projects-grid,

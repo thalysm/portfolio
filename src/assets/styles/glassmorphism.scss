@@ -72,6 +72,20 @@ body.theme-glassmorphism {
   .resume-subtitle {
     border-color: rgba(255, 255, 255, 0.3);
     color: #fff;
+    background: #002940; /* Um tom escuro do gradiente de fundo para "esconder" a linha */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+  }
+
+  .resume-timeline-wrapper::after {
+    content: none; /* Remover a linha global */
+  }
+  .timeline-group::after {
+    background: rgba(255, 255, 255, 0.3); /* Cor da linha do grupo */
+  }
+  .timeline-dot {
+    background-color: #fff;
+    border: 3px solid #000;
   }
 
   .resume-item {

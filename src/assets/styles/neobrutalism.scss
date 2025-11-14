@@ -45,6 +45,19 @@
   .resume-subtitle {
     border-color: #000;
     color: #000;
+    background-color: #9f87f4; /* Fundo para "esconder" a linha central */
+    padding-bottom: 5px;
+  }
+
+  .resume-timeline-wrapper::after {
+    content: none; /* Remover a linha global */
+  }
+  .timeline-group::after {
+    background: #000; /* Cor da linha do grupo */
+  }
+  .timeline-dot {
+    background-color: #fff;
+    border: 3px solid #000000 !important; /* Borda externa, cor do body */
   }
 
   .resume-item {
@@ -126,5 +139,10 @@
     background-color: #f2f2f2;
     border-bottom: 3px solid #000;
     box-shadow: none;
+  }
+
+  .section-resume {
+    background-color: #9f87f4;
+    max-width: 100%;
   }
 }
