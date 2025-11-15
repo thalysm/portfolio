@@ -1,14 +1,22 @@
 body.theme-glassmorphism {
-  background-image: radial-gradient(
-    circle at 10% 20%,
+  background-image: linear-gradient(
+    to bottom,
     rgb(0, 102, 161) 0%,
-    rgb(0, 68, 108) 15.9%,
-    rgb(0, 41, 64) 30.5%,
-    rgb(0, 0, 0) 50.2%,
-    rgb(0, 41, 64) 71.9%,
-    rgb(0, 68, 108) 85.5%,
-    rgb(0, 102, 161) 100.2%
+    rgb(60, 55, 122) 10%,
+    /* roxo */ rgb(90, 40, 120) 20%,
+    rgb(60, 55, 122) 25%,
+    rgb(40, 70, 140) 30%,
+    /* azul */ rgb(0, 82, 130) 40%,
+    rgb(122, 22, 91) 50%,
+    /* magenta */ rgb(160, 25, 85) 60%,
+    rgb(180, 30, 80) 70%,
+    /* rosa */ rgb(200, 40, 90) 80%,
+    rgb(120, 30, 100) 90%,
+    rgb(0, 41, 64) 100% /* azul escuro */
   );
+  background-size: 100% 600vh; /* Aumentado para 6x a altura da tela */
+  background-repeat: no-repeat;
+  background-color: rgb(0, 41, 64); /* Cor de fallback (última cor do gradiente) */
   min-height: 100vh;
 }
 .glassmorphism {
@@ -201,5 +209,28 @@ body.theme-glassmorphism {
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* NOVOS ESTILOS GLASSMORPHISM (Projects) */
+  .filter-button {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+  .filter-button.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .pagination-button {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .pagination-button.active {
+    background: rgba(255, 255, 255, 0.25);
+  }
+  .pagination-button:disabled {
+    color: #888;
+    background: rgba(0, 0, 0, 0.1);
   }
 }

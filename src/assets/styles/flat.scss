@@ -72,14 +72,6 @@
     }
   }
 
-  .project-card {
-    border-color: #e9e9e9;
-    background: #f2f2f2;
-    p {
-      color: #b1b1b1;
-    }
-  }
-
   .blog-card {
     border-color: #e9e9e9;
     background: #f2f2f2;
@@ -123,5 +115,22 @@
     background-color: #f2f2f2;
     border-bottom: 1px solid #e9e9e9;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  /* NOVOS ESTILOS FLAT (Projects) */
+  .filter-button.active {
+    background-color: #5093fe;
+    color: #fff;
+    border-color: #5093fe;
+  }
+
+  .pagination-button {
+    border: 1px solid #e9e9e9;
+    background-color: #f2f2f2;
+    color: #5093fe;
+  }
+  .pagination-button.active {
+    background-color: #5093fe;
+    color: #fff;
   }
 }
