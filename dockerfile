@@ -11,7 +11,8 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 # Copia todo o resto do código-fonte
-COPY . .
+COPY .
+.
 
 # Executa o script de build (cria a pasta /app/dist)
 RUN npm run build
@@ -23,7 +24,7 @@ WORKDIR /app
 
 # Copia apenas as dependências de produção (necessárias para o 'vite preview')
 COPY package.json package-lock.json ./
-RUN npm install --omit=dev
+RUN npm install
 
 # Copia a pasta 'dist' construída do estágio anterior
 COPY --from=builder /app/dist ./dist
