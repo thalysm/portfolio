@@ -68,8 +68,13 @@
     padding-bottom: 5px;
   }
 
+  .section-resume {
+    background-color: #e9e9e9;
+    max-width: 100%;
+  }
+
   .timeline-dot {
-    background-color: #5093fe;
+    background-color: #fff;
     border: 3px solid #f2f2f2;
     box-shadow:
       1px 1px 1px #919191,
@@ -142,6 +147,9 @@
     p {
       color: #b1b1b1;
     }
+  }
+  .section-blog {
+    background-color: #e9e9e9;
   }
 
   .tag {
@@ -247,13 +255,16 @@
   }
 
   .footer {
+    background-color: #000;
     border-top: 2px solid rgb(255, 255, 255);
-    box-shadow:
-      inset 0px 2px 2px #e6e5e5,
-      inset 0px -2px 2px #ffffff;
+
     .footer-content p {
-      color: #b1b1b1;
+      color: #fff;
     }
+  }
+
+  .social-icon {
+    filter: brightness(0) invert(1);
   }
 
   .menu.is-scrolled {
@@ -264,10 +275,42 @@
   }
 
   /* NOVOS ESTILOS NEOMORPHISM (Projects) */
+  .filter-button {
+    background: #e8e8e8;
+    color: #b1b1b1;
+    font-weight: 600;
+    padding: 0.6em 1.2em;
+    border-radius: 0.5em;
+    border: 1px solid #e8e8e8 !important;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow:
+      1px 1px 1px #919191,
+      -3px -3px 5px #fff;
+  }
+
+  .filter-button:hover,
+  .filter-button:focus {
+    color: #5093fe;
+  }
+
+  .filter-button:active {
+    box-shadow:
+      inset 1px 1px 1px #919191,
+      inset -3px -3px 5px #fff;
+  }
+
   .filter-button.active {
-    background-color: #5093fe;
-    color: #fff;
-    border-color: #5093fe;
+    color: #5093fe;
+    box-shadow:
+      inset 1px 1px 1px #919191,
+      inset -3px -3px 5px #fff;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   .pagination-button {
