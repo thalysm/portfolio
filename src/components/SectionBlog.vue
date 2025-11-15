@@ -28,19 +28,25 @@ const blogPosts = ref([
 </script>
 
 <template>
-  <section class="section-blog section-padding">
-    <h2 class="section-title">Blog</h2>
-    <div class="blog-grid">
-      <div v-for="post in blogPosts" :key="post.title" class="blog-card">
-        <img :src="post.image" :alt="post.title" class="blog-image" />
-        <div class="blog-info">
-          <span class="blog-date">{{ post.date }}</span>
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.snippet }}</p>
-          <div class="blog-tags">
-            <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
+  <section class="section-blog">
+    <div class="section-padding">
+      <h2 class="section-title">Blog</h2>
+      <div class="blog-grid">
+        <div v-for="post in blogPosts" :key="post.title" class="blog-card">
+          <img :src="post.image" :alt="post.title" class="blog-image" />
+          <div class="blog-info">
+            <span class="blog-date">{{ post.date }}</span>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.snippet }}</p>
+            <div class="blog-tags">
+              <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px">
+        <button class="submit-button">View More</button>
       </div>
     </div>
   </section>
