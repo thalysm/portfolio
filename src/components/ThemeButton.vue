@@ -243,10 +243,7 @@ const styles = {
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    background: initial;
-  }
-  img {
+  & img {
     width: 20px;
   }
   &.neobrutalism {

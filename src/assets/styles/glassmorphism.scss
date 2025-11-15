@@ -252,6 +252,12 @@ body.theme-glassmorphism {
     color: #888;
     background: rgba(0, 0, 0, 0.1);
   }
+
+  .menu-items.is-open {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 .glassmorphism .menu-toggle span {
