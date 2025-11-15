@@ -11,8 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 # Copia todo o resto do código-fonte
-COPY .
-.
+COPY . .
 
 # Executa o script de build (cria a pasta /app/dist)
 RUN npm run build
@@ -22,8 +21,9 @@ FROM node:20-alpine AS final
 
 WORKDIR /app
 
-# Copia apenas as dependências de produção (necessárias para o 'vite preview')
+# Copia os arquivos de dependência
 COPY package.json package-lock.json ./
+# Instala TODAS as dependências (incluindo 'vite' que é devDependency)
 RUN npm install
 
 # Copia a pasta 'dist' construída do estágio anterior
