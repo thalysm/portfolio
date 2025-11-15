@@ -22,6 +22,24 @@
     }
   }
 
+  .section-contact {
+    position: relative;
+    max-width: 100%;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('@/assets/images/neobrutalism-bg.png') center / auto repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
   .menu-items {
     .menu-item {
       color: #b1b1b1;
@@ -144,13 +162,14 @@
 
   .submit-button {
     background: #f2f2f2;
-    color: #000;
+    color: #5093fe;
     border: 3px solid black;
     box-shadow: 5px 5px 0px 0px #1f1f1f;
   }
 
   .footer {
     border-top: 3px solid #000;
+    background-color: #ffc900;
     .footer-content p {
       color: #333;
     }

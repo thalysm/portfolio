@@ -23,6 +23,14 @@ const blogPosts = ref([
       'Exploring the rising trend of Neobrutalism, its core principles, and how to implement it effectively in your own projects...',
     image: placeholderImg,
     tags: ['Design', 'CSS', 'UI/UX']
+  },
+  {
+    title: 'Neobrutalism in Web Design',
+    date: 'October 15, 2025',
+    snippet:
+      'Exploring the rising trend of Neobrutalism, its core principles, and how to implement it effectively in your own projects...',
+    image: placeholderImg,
+    tags: ['Design', 'CSS', 'UI/UX']
   }
 ])
 </script>
