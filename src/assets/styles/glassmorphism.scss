@@ -128,6 +128,17 @@ body.theme-glassmorphism {
     }
   }
 
+  .glassmorphism .menu-items {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.2));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+
+  .theme-button.glassmorphism svg {
+    width: 20px;
+    height: 20px;
+  }
+
   .icon-circle {
     height: 48px;
     width: 48px;
@@ -197,10 +208,18 @@ body.theme-glassmorphism {
   }
 
   .footer {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(15px);
     border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
     .footer-content p {
       color: #eee;
     }
+  }
+  .social-icon {
+    filter: brightness(0) invert(1);
   }
 
   .menu.is-scrolled {
@@ -233,4 +252,62 @@ body.theme-glassmorphism {
     color: #888;
     background: rgba(0, 0, 0, 0.1);
   }
+}
+
+.glassmorphism .menu-toggle span {
+  background-color: #fff;
+}
+
+body.theme-glassmorphism {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(0, 102, 161),
+    rgb(60, 55, 122),
+    rgb(90, 40, 120),
+    rgb(0, 41, 64)
+  );
+  background-size: 100% 200%; /* altura 2x a tela */
+  background-repeat: no-repeat;
+  animation: moveGradient 40s linear infinite;
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+// mouse
+
+body.theme-glassmorphism .pagination-button:disabled,
+body.theme-glassmorphism .filter-button:disabled {
+  cursor: url('/cursors/glassmorphism/not-allowed.svg'), not-allowed;
+}
+
+body.theme-glassmorphism .form-input,
+body.theme-glassmorphism .form-textarea,
+body.theme-glassmorphism input,
+body.theme-glassmorphism textarea {
+  cursor: url('/cursors/glassmorphism/text.svg'), text;
+}
+
+body.theme-glassmorphism a,
+body.theme-glassmorphism button,
+body.theme-glassmorphism .menu-item,
+body.theme-glassmorphism .label,
+body.theme-glassmorphism .filter-button,
+body.theme-glassmorphism .pagination-button,
+body.theme-glassmorphism .submit-button,
+body.theme-glassmorphism .theme-button {
+  cursor: url('/cursors/glassmorphism/pointer.svg'), pointer;
+}
+
+body.theme-glassmorphism {
+  cursor: url('/cursors/glassmorphism/default.svg'), auto;
 }

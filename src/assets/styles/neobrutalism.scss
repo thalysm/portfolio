@@ -241,3 +241,37 @@
     box-shadow: none;
   }
 }
+
+/* Ajuste específico para Neobrutalism (ícone preto) */
+.neobrutalism .menu-toggle span {
+  background-color: #000;
+}
+
+// cursor
+
+body.theme-neobrutalism {
+  cursor: url('/cursors/neobrutalism/default.svg'), auto;
+}
+
+body.theme-neobrutalism a,
+body.theme-neobrutalism button,
+body.theme-neobrutalism .menu-item,
+body.theme-neobrutalism .label,
+body.theme-neobrutalism .filter-button,
+body.theme-neobrutalism .pagination-button,
+body.theme-neobrutalism .submit-button,
+body.theme-neobrutalism .theme-button {
+  cursor: url('/cursors/neobrutalism/pointer.svg'), pointer;
+}
+
+body.theme-neobrutalism .form-input,
+body.theme-neobrutalism .form-textarea,
+body.theme-neobrutalism input,
+body.theme-neobrutalism textarea {
+  cursor: url('/cursors/neobrutalism/text.svg'), text;
+}
+
+body.theme-neobrutalism .pagination-button:disabled,
+body.theme-neobrutalism .filter-button:disabled {
+  cursor: url('/cursors/neobrutalism/not-allowed.svg'), not-allowed;
+}

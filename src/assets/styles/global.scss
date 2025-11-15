@@ -78,15 +78,6 @@ h5 {
   }
 }
 
-/* Ajuste específico para Glassmorphism (ícone branco) */
-.glassmorphism .menu-toggle span {
-  background-color: #fff;
-}
-/* Ajuste específico para Neobrutalism (ícone preto) */
-.neobrutalism .menu-toggle span {
-  background-color: #000;
-}
-
 .section-home {
   display: flex;
   align-items: center;
@@ -553,12 +544,6 @@ h5 {
     width: 80%;
   }
 
-  .glassmorphism .menu-items {
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.3), rgba(0, 0, 0, 0.2));
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-  }
-
   .neobrutalism .menu-items {
     background-color: #f2f2f2;
     border-bottom: 3px solid #000;
@@ -711,11 +696,6 @@ h5 {
     height: 18px;
   }
 
-  .theme-button.glassmorphism svg {
-    width: 20px;
-    height: 20px;
-  }
-
   .header-content {
     flex-direction: column;
     gap: 10px;
@@ -801,115 +781,4 @@ h5 {
 .pagination-button.active {
   color: #5093fe;
   border-color: #5093fe;
-}
-
-/* --- Custom Cursors (CORRIGIDO) --- */
-
-/* Default */
-body.theme-neobrutalism {
-  cursor: url('/cursors/neobrutalism/default.svg'), auto;
-}
-body.theme-glassmorphism {
-  cursor: url('/cursors/glassmorphism/default.svg'), auto;
-}
-body.theme-flat {
-  cursor: url('/cursors/flat/default.svg'), auto;
-}
-body.theme-neomorphism {
-  cursor: url('/cursors/neomorphism/default.svg'), auto;
-}
-
-/* Pointer */
-body.theme-neobrutalism a,
-body.theme-neobrutalism button,
-body.theme-neobrutalism .menu-item,
-body.theme-neobrutalism .label,
-body.theme-neobrutalism .filter-button,
-body.theme-neobrutalism .pagination-button,
-body.theme-neobrutalism .submit-button,
-body.theme-neobrutalism .theme-button {
-  cursor: url('/cursors/neobrutalism/pointer.svg'), pointer;
-}
-
-body.theme-glassmorphism a,
-body.theme-glassmorphism button,
-body.theme-glassmorphism .menu-item,
-body.theme-glassmorphism .label,
-body.theme-glassmorphism .filter-button,
-body.theme-glassmorphism .pagination-button,
-body.theme-glassmorphism .submit-button,
-body.theme-glassmorphism .theme-button {
-  cursor: url('/cursors/glassmorphism/pointer.svg'), pointer;
-}
-
-body.theme-flat a,
-body.theme-flat button,
-body.theme-flat .menu-item,
-body.theme-flat .label,
-body.theme-flat .filter-button,
-body.theme-flat .pagination-button,
-body.theme-flat .submit-button,
-body.theme-flat .theme-button {
-  cursor: url('/cursors/flat/pointer.svg'), pointer;
-}
-
-body.theme-neomorphism a,
-body.theme-neomorphism button,
-body.theme-neomorphism .menu-item,
-body.theme-neomorphism .label,
-body.theme-neomorphism .filter-button,
-body.theme-neomorphism .pagination-button,
-body.theme-neomorphism .submit-button,
-body.theme-neomorphism .theme-button {
-  cursor: url('/cursors/neomorphism/pointer.svg'), pointer;
-}
-
-/* Text */
-body.theme-neobrutalism .form-input,
-body.theme-neobrutalism .form-textarea,
-body.theme-neobrutalism input,
-body.theme-neobrutalism textarea {
-  cursor: url('/cursors/neobrutalism/text.svg'), text;
-}
-
-body.theme-glassmorphism .form-input,
-body.theme-glassmorphism .form-textarea,
-body.theme-glassmorphism input,
-body.theme-glassmorphism textarea {
-  cursor: url('/cursors/glassmorphism/text.svg'), text;
-}
-
-body.theme-flat .form-input,
-body.theme-flat .form-textarea,
-body.theme-flat input,
-body.theme-flat textarea {
-  cursor: url('/cursors/flat/text.svg'), text;
-}
-
-body.theme-neomorphism .form-input,
-body.theme-neomorphism .form-textarea,
-body.theme-neomorphism input,
-body.theme-neomorphism textarea {
-  cursor: url('/cursors/neomorphism/text.svg'), text;
-}
-
-/* not-allowed */
-body.theme-neobrutalism .pagination-button:disabled,
-body.theme-neobrutalism .filter-button:disabled {
-  cursor: url('/cursors/neobrutalism/not-allowed.svg'), not-allowed;
-}
-
-body.theme-glassmorphism .pagination-button:disabled,
-body.theme-glassmorphism .filter-button:disabled {
-  cursor: url('/cursors/glassmorphism/not-allowed.svg'), not-allowed;
-}
-
-body.theme-flat .pagination-button:disabled,
-body.theme-flat .filter-button:disabled {
-  cursor: url('/cursors/flat/not-allowed.svg'), not-allowed;
-}
-
-body.theme-neomorphism .pagination-button:disabled,
-body.theme-neomorphism .filter-button:disabled {
-  cursor: url('/cursors/neomorphism/not-allowed.svg'), not-allowed;
 }

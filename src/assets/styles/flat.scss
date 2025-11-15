@@ -134,3 +134,32 @@
     color: #fff;
   }
 }
+
+// cursors
+
+body.theme-flat {
+  cursor: url('/cursors/flat/default.svg'), auto;
+}
+
+body.theme-flat a,
+body.theme-flat button,
+body.theme-flat .menu-item,
+body.theme-flat .label,
+body.theme-flat .filter-button,
+body.theme-flat .pagination-button,
+body.theme-flat .submit-button,
+body.theme-flat .theme-button {
+  cursor: url('/cursors/flat/pointer.svg'), pointer;
+}
+
+body.theme-flat .form-input,
+body.theme-flat .form-textarea,
+body.theme-flat input,
+body.theme-flat textarea {
+  cursor: url('/cursors/flat/text.svg'), text;
+}
+
+body.theme-flat .pagination-button:disabled,
+body.theme-flat .filter-button:disabled {
+  cursor: url('/cursors/flat/not-allowed.svg'), not-allowed;
+}

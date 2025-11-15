@@ -332,3 +332,32 @@
     color: #919191;
   }
 }
+
+// mouse
+
+body.theme-neomorphism {
+  cursor: url('/cursors/neomorphism/default.svg'), auto;
+}
+
+body.theme-neomorphism a,
+body.theme-neomorphism button,
+body.theme-neomorphism .menu-item,
+body.theme-neomorphism .label,
+body.theme-neomorphism .filter-button,
+body.theme-neomorphism .pagination-button,
+body.theme-neomorphism .submit-button,
+body.theme-neomorphism .theme-button {
+  cursor: url('/cursors/neomorphism/pointer.svg'), pointer;
+}
+
+body.theme-neomorphism .form-input,
+body.theme-neomorphism .form-textarea,
+body.theme-neomorphism input,
+body.theme-neomorphism textarea {
+  cursor: url('/cursors/neomorphism/text.svg'), text;
+}
+
+body.theme-neomorphism .pagination-button:disabled,
+body.theme-neomorphism .filter-button:disabled {
+  cursor: url('/cursors/neomorphism/not-allowed.svg'), not-allowed;
+}
