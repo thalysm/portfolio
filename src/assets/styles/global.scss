@@ -600,63 +600,46 @@ h5 {
 
   /* --- Mobile Timeline: Stacked Single Column (Fall-back) --- */
   .resume-timeline-wrapper::after {
-    /* left: 10px; REMOVIDO */
+    content: none;
+  }
+  .timeline-group::after {
     content: none;
   }
 
-  .timeline-group::after {
-    /* Linha à esquerda no mobile */
-    left: 10px;
-    margin-left: -2px;
-    bottom: 0; /* Linha se estende até o final do grupo */
-  }
-
-  .timeline-group .timeline-item:last-child {
-    &::after {
-      left: 10px; /* Alinhado com a linha mobile */
-      margin-left: -2px; /* Centraliza o elemento de 4px na linha */
-      top: 50px; /* Ponto de início */
-    }
-  }
-
-  .timeline-item {
-    width: 100%;
-    padding-left: 50px; /* Conteúdo movido para a direita */
-    padding-right: 10px;
-    left: 0;
-    text-align: left;
-  }
-
-  .timeline-left {
-    padding-right: 10px;
-    text-align: left; /* Texto sempre à esquerda no mobile */
-  }
-
-  .timeline-left::after {
-    right: auto;
-    left: 20px; /* Conector alinhado à esquerda */
-  }
-
-  .timeline-right {
-    padding-left: 50px;
-    text-align: left;
-    left: 0;
-  }
-
-  .timeline-right::after {
-    left: 20px;
-  }
-
+  /* 2. Remove o "dot" que não é mais necessário */
   .timeline-dot {
-    left: 2px !important;
-    right: auto !important;
-    border-color: #f2f2f2;
+    display: none;
   }
 
-  .resume-item {
-    text-align: left;
+  /* 3. Reseta os headers para serem blocos normais (a correção principal!) */
+  .timeline-header,
+  .resume-subtitle.timeline-header.header-education,
+  .resume-subtitle.timeline-header.header-experience {
+    position: relative;
+    left: auto !important; /* Reseta o 'left' dos temas */
+    transform: none !important; /* Reseta o 'transform' */
+    width: 100%;
+    text-align: center; /* Centraliza o header (Ex: "Education") */
+    margin-bottom: 25px;
   }
 
+  /* 4. Faz o conteúdo do header (ícone + texto) ficar centralizado */
+  .header-content {
+    flex-direction: column; /* Isto você já tem, o que é ótimo */
+    align-items: center; /* Centraliza o ícone e o texto */
+    gap: 10px; /* Isto você já tem */
+  }
+
+  /* 5. Faz os cards ocuparem a largura total, sem padding lateral estranho */
+  .timeline-item,
+  .timeline-left,
+  .timeline-right {
+    width: 100%;
+    left: 0;
+    padding-left: 10px; /* Apenas um padding leve */
+    padding-right: 10px; /* Apenas um padding leve */
+    text-align: left; /* Mantém o texto do card alinhado à esquerda */
+  }
   /* --- Other Mobile Sections --- */
   .section-padding {
     padding: 60px 20px;
