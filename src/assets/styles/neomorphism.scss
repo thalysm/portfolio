@@ -81,6 +81,11 @@
       -3px -3px 5px #fff;
   }
 
+  .timeline-group .timeline-item:last-child::after {
+    /* Cor de fundo da .section-resume do neobrutalism */
+    background-color: #e9e9e9;
+  }
+
   .resume-item {
     border-radius: 20px !important;
     border: 2px solid rgb(255, 255, 255) !important;

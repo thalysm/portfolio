@@ -61,6 +61,11 @@
     border: 3px solid #f2f2f2;
   }
 
+  .timeline-group .timeline-item:last-child::after {
+    /* Cor de fundo da .section-resume do neobrutalism */
+    background-color: #f2f2f2;
+  }
+
   .resume-item {
     border-color: #e9e9e9;
     background-color: #f2f2f2;

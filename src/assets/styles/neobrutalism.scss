@@ -87,6 +87,12 @@
   .resume-timeline-wrapper::after {
     content: none; /* Remover a linha global */
   }
+
+  .timeline-group .timeline-item:last-child::after {
+    /* Cor de fundo da .section-resume do neobrutalism */
+    background-color: #9f87f4;
+  }
+
   .timeline-group::after {
     background: #000; /* Cor da linha do grupo */
   }

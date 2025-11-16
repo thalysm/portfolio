@@ -178,20 +178,26 @@ h5 {
 }
 
 /* NOVO: Elemento de bloqueio para esconder a linha abaixo do último dot */
-.timeline-group .timeline-item:last-child {
-  /* Use ::after do último item para bloquear a linha */
-  &::after {
-    content: '';
-    position: absolute;
-    /* Posição sobre a linha (left: 50%; margin-left: -2px) */
-    left: 50%;
-    margin-left: -2px;
-    width: 4px;
-    height: 100vh; /* Alto o suficiente para cobrir o restante do grupo */
-    z-index: 10; /* Maior que a linha (z-index: 1) */
-    top: 50px; /* Ponto de início (seguro abaixo do dot) */
-    /* A cor de fundo será definida nos arquivos de tema */
-  }
+.education-group .timeline-item:last-child::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 4px;
+  left: 100%;
+  margin-left: -2px;
+  top: 28px;
+  bottom: 0;
+}
+
+.experience-group .timeline-item:last-child::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 4px;
+  left: 0;
+  margin-left: -2px;
+  top: 28px;
+  bottom: 0;
 }
 
 /* Posicionamento do cabeçalho sobre a linha */
