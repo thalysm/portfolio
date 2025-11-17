@@ -88,7 +88,8 @@ const totalPages = computed(() => Math.ceil(filteredProjects.value.length / item
               <span v-for="tag in project.tags" :key="tag" class="tag">{{ tag }}</span>
             </div>
             <a v-if="project.projectLink" :href="project.projectLink" target="_blank" class="submit-button" style="text-decoration:none; text-align:center; margin-top:10px; display:block;">{{ t('viewProject') }}</a>
-            <RouterLink :to="{name: 'project-detail', params: {id: project._id}}" class="submit-button" style="text-decoration:none; text-align:center; margin-top:10px; display:block;">{{ t('details') }}</RouterLink>
+            <!-- TODO criar campo para conteudo do projeto -->
+            <!-- <RouterLink :to="{name: 'project-detail', params: {id: project._id}}" class="submit-button" style="text-decoration:none; text-align:center; margin-top:10px; display:block;">{{ t('details') }}</RouterLink> -->
           </div>
         </div>
       </div>
