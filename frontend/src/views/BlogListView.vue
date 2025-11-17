@@ -1,29 +1,33 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router' // 1. Importar o RouterLink
-
-defineProps({
-  currentStyle: String
-})
+import Menu from '@/components/Menu.vue'
+import Footer from '@/components/Footer.vue'
 
 const API_URL = ''
-
 const blogPosts = ref([])
+const loading = ref(true)
+const error = ref(null)
+
+const currentStyle = ref('neobrutalism')
 
 onMounted(async () => {
   await fetchPosts()
 })
 
 const fetchPosts = async () => {
+  loading.value = true
+  error.value = null
   try {
-    const response = await fetch(`${API_URL}/api/posts?limit=3`)
+    const response = await fetch(`${API_URL}/api/posts`)
     if (!response.ok) {
       throw new Error('Falha ao buscar posts')
     }
     blogPosts.value = await response.json()
-  } catch (error) {
-    console.error('Erro ao buscar posts:', error)
-    blogPosts.value = []
+  } catch (err) {
+    error.value = err.message
+  } finally {
+    loading.value = false
   }
 }
 
@@ -41,24 +45,29 @@ const formatDate = (isoString) => {
       month: 'long',
       day: 'numeric'
     })
-  } catch (error) {
-    console.error('Error formatting date:', error)
+  } catch (e) {
     return isoString
   }
 }
 </script>
 
 <template>
-  <section class="section-blog">
-    <div class="section-padding">
+  <main>
+    <Menu />
+
+    <div class="section-padding blog-list-page">
       <h2 class="section-title">Blog</h2>
-      <div class="blog-grid">
+
+      <div v-if="loading" style="text-align: center">A carregar posts...</div>
+      <div v-if="error" style="text-align: center; color: red">{{ error }}</div>
+
+      <div class="blog-grid" v-if="!loading && blogPosts.length > 0">
         <RouterLink
           v-for="post in blogPosts"
           :key="post._id"
           :to="{ name: 'blog-post', params: { id: post._id } }"
           class="blog-card"
-          style="text-decoration: none"
+          style="text-decoration: none; color: inherit"
         >
           <img :src="getPostImageUrl(post.image)" :alt="post.title" class="blog-image" />
           <div class="blog-info">
@@ -72,19 +81,18 @@ const formatDate = (isoString) => {
         </RouterLink>
       </div>
 
-      <div v-if="blogPosts.length === 0" style="text-align: center; margin-top: 20px">
-        <p>Nenhum post encontrado.</p>
-      </div>
-
-      <div style="text-align: center; margin-top: 40px">
-        <RouterLink
-          :to="{ name: 'blog-list' }"
-          class="submit-button"
-          style="text-decoration: none"
-        >
-          View More
-        </RouterLink>
+      <div v-if="!loading && blogPosts.length === 0" style="text-align: center">
+        Nenhum post encontrado.
       </div>
     </div>
-  </section>
+
+    <Footer :currentStyle="currentStyle" />
+  </main>
 </template>
+
+<style scoped>
+.blog-list-page {
+  min-height: calc(100vh - 200px);
+  padding-top: 150px;
+}
+</style>
