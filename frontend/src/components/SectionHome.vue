@@ -1,9 +1,12 @@
 <script setup>
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps({
   currentStyle: String
 })
+
+const { t } = useI18n()
 
 const photosSectionHome = {
   NEOBRUTALISM: new URL('/src/assets/images/PhotoSectionHome.png', import.meta.url),
@@ -48,27 +51,20 @@ const dynamicPhotoSrc = computed(() => {
 <template>
   <section class="section-home">
     <div>
-      <span class="span-section-home"> Hi, My name is </span>
+      <span class="span-section-home">{{ t('hi') }}</span>
       <h1 class="name-section-home">Thalys Marques</h1>
       <p class="text-section-home">
-        A passionate Front-End developer with a Bachelor of Computer Engineering. My journey in the
-        world of programming started with the goal of combining my love for technology with creating
-        intuitive and enjoyable interfaces. With knowledge in UI/UX, I have the ability to design
-        digital experiences that delight users. Born in Uberaba, Minas Gerais, I bring a unique
-        perspective and an innovative approach to my projects. My focus is always on balancing
-        aesthetics and functionality, ensuring that every detail is carefully considered. I am
-        always seeking constant learning, aiming to enhance my skills and stay updated with the
-        latest trends in the field of Front-End development.
+        {{ t('homeDescription') }}
       </p>
       <div class="hability-list">
         <div class="label" v-for="hability in habilities" :key="hability.name">
           <div class="label-internal">
-            <img :src="hability.icon" />
+            <img :src="hability.icon" :alt="hability.name" />
             <p>{{ hability.name }}</p>
           </div>
         </div>
       </div>
     </div>
-    <img :src="dynamicPhotoSrc" class="photo-section-home" />
+    <img :src="dynamicPhotoSrc" class="photo-section-home" alt="Thalys Marques" />
   </section>
 </template>
