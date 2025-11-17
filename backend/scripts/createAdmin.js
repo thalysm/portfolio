@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const User = require('../src/domain/models/User'); // Ajuste o caminho se necessário
+const User = require('../src/domain/models/User');
 
 // Carrega as variáveis de ambiente (apontando para o .env na raiz do backend)
 dotenv.config({ path: __dirname + '/../.env' });
 
 // --- CONFIGURE SEU ADMIN AQUI ---
-const ADMIN_EMAIL = 'thalyscorreia@hotmail.com';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD; // Mude esta senha!
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL; 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 // ---------------------------------
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -17,9 +17,10 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
-if (ADMIN_EMAIL === 'seu-email@admin.com' || ADMIN_PASSWORD === 'SuaSenhaSuperForte123') {
-  console.warn('AVISO: Por favor, edite o script createAdmin.js e mude o email e senha padrão.');
-  process.exit(0);
+if (!ADMIN_EMAIL || !ADMIN_PASSWORD) {
+  console.error('Erro: ADMIN_EMAIL ou ADMIN_PASSWORD não foram definidos nas variáveis de ambiente.');
+  console.log('Por favor, defina-os no ficheiro .env na raiz do projeto (gemini/.env)');
+  process.exit(1);
 }
 
 const createAdmin = async () => {
