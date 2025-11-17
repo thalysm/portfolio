@@ -724,14 +724,15 @@ h5 {
 }
 
 .project-info p {
-  flex: 1; /* empurra o restante para baixo */
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* Propriedades removidas: flex: 1, overflow: hidden, text-overflow: ellipsis */
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #555;
 }
 
 .project-card {
   width: 300px; /* largura fixa */
-  height: 420px; /* altura fixa */
+  /* height: 420px; <-- REMOVIDO */
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
