@@ -1,14 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router' // 1. Importar o RouterLink
+import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 defineProps({
   currentStyle: String
 })
 
+const { t, locale } = useI18n()
 const API_URL = ''
 
 const blogPosts = ref([])
+
+// Helper para pegar o texto traduzido (se for objeto) ou a string (se for antigo)
+const getLoc = (obj) => {
+  if (!obj) return ''
+  if (typeof obj === 'string') return obj
+  return obj[locale.value] || obj.pt || ''
+}
 
 onMounted(async () => {
   await fetchPosts()
@@ -36,7 +45,7 @@ const formatDate = (isoString) => {
   if (!isoString) return ''
   try {
     const date = new Date(isoString)
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(locale.value, {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -51,7 +60,7 @@ const formatDate = (isoString) => {
 <template>
   <section class="section-blog">
     <div class="section-padding">
-      <h2 class="section-title">Blog</h2>
+      <h2 class="section-title">{{ t('blog') }}</h2>
       <div class="blog-grid">
         <RouterLink
           v-for="post in blogPosts"
@@ -60,11 +69,11 @@ const formatDate = (isoString) => {
           class="blog-card"
           style="text-decoration: none"
         >
-          <img :src="getPostImageUrl(post.image)" :alt="post.title" class="blog-image" />
+          <img :src="getPostImageUrl(post.image)" :alt="getLoc(post.title)" class="blog-image" />
           <div class="blog-info">
             <span class="blog-date">{{ formatDate(post.createdAt) }}</span>
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.snippet }}</p>
+            <h3>{{ getLoc(post.title) }}</h3>
+            <p>{{ getLoc(post.snippet) }}</p>
             <div class="blog-tags">
               <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
             </div>
@@ -82,7 +91,7 @@ const formatDate = (isoString) => {
           class="submit-button"
           style="text-decoration: none"
         >
-          View More
+          {{ t('viewMore') }}
         </RouterLink>
       </div>
     </div>
