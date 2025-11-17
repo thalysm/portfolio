@@ -1,7 +1,9 @@
 <script setup>
-import { RouterView } from 'vue-router'
-import { onMounted, ref, watchEffect } from 'vue'
+import { RouterView, useRoute } from 'vue-router' // Importado useRoute
+import { onMounted, ref, watchEffect, computed } from 'vue' // Importado computed
 import ThemeButton from './components/ThemeButton.vue'
+
+const route = useRoute() // Instanciado o route
 
 const styles = {
   NEOBRUTALISM: 'neobrutalism',
@@ -12,12 +14,12 @@ const styles = {
 
 // Objeto para mapear os temas aos seus respectivos favicons
 const faviconPaths = {
-  neobrutalism: '/favicon/neobrutalism.png', // Exemplo de favicon para o tema neobrutalism
-  neomorphism: '/favicon/neomorphism.png', // Exemplo de favicon para o tema neomorphism
-  glassmorphism: '/favicon/glassmorphism.png', // Exemplo de favicon para o tema glassmorphism
-  flat: '/favicon/flat.png' // Exemplo de favicon para o tema flat
+  neobrutalism: '/favicon/neobrutalism.png',
+  neomorphism: '/favicon/neomorphism.png',
+  glassmorphism: '/favicon/glassmorphism.png',
+  flat: '/favicon/flat.png'
 }
-const defaultFavicon = '/favicon.ico' // O favicon padrão
+const defaultFavicon = '/favicon.ico'
 
 const currentStyle = ref(styles.NEOBRUTALISM)
 const themePortfolio = 'themePortfolio'
@@ -30,6 +32,11 @@ const getStyle = (style) => {
   localStorage.setItem(themePortfolio, style)
   return (currentStyle.value = style)
 }
+
+// Computed property para esconder o botão nas rotas /admin
+const showThemeButton = computed(() => {
+  return !route.path.startsWith('/admin')
+})
 
 watchEffect(() => {
   // Lógica existente para as classes do body
@@ -57,6 +64,10 @@ watchEffect(() => {
   <div>
     <RouterView :class="currentStyle" :currentStyle="currentStyle" />
 
-    <ThemeButton @change-style="getStyle" :currentStyle="currentStyle" />
+    <ThemeButton
+      v-if="showThemeButton"
+      @change-style="getStyle"
+      :currentStyle="currentStyle"
+    />
   </div>
 </template>
