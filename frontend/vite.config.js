@@ -13,7 +13,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+
   server: {
+    allowedHosts: ['thalys.btreedevs.com.br'],
     proxy: {
       '/api': {
         target: 'http://localhost:5000',
@@ -25,7 +27,9 @@ export default defineConfig({
       }
     }
   },
+
   preview: {
+    allowedHosts: ['thalys.btreedevs.com.br'],
     proxy: {
       '/api': {
         target: 'http://localhost:5000',
