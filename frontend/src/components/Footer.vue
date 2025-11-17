@@ -1,12 +1,12 @@
-<script setup></script>
+<script setup>
+import { useI18n } from 'vue-i18n'
 
-<style scoped>
-.social-icon {
-  width: 20px;
-  height: 20px;
-  margin: 0 8px;
-}
-</style>
+defineProps({
+  currentStyle: String
+})
+
+const { t } = useI18n()
+</script>
 
 <template>
   <footer class="footer">
@@ -27,8 +27,21 @@
         </a>
       </p>
       <p>
-        Developed with 🖤 | Thalys Marques | {{ new Date().getFullYear() }} All Rights Reserved.
+        {{ t('footerText', { year: new Date().getFullYear() }) }}
       </p>
     </div>
   </footer>
 </template>
+
+<style scoped>
+.social-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 8px;
+  transition: transform 0.2s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+</style>
