@@ -98,21 +98,27 @@ defineProps({
   gap: 8px;
   padding: 10px;
   border: 3px solid #000;
-  border-bottom: none; /* O editor terá a borda inferior */
+  border-bottom: none; /* Conecta visualmente com o editor abaixo */
   background-color: #f2f2f2;
 }
+
 .toolbar-button {
-  /* Estilo Neobrutalism para botões */
-  border: 3px solid black;
+  border: 2px solid black;
   font-weight: 600;
   padding: 4px 8px;
   font-size: 14px;
-  background-color: #f2f2f2;
+  background-color: #fff;
   cursor: pointer;
+  transition: all 0.2s;
 }
+
+.toolbar-button:hover {
+  background-color: #e0e0e0;
+}
+
 .toolbar-button.is-active {
   background: #5093fe;
-  color: #000;
-  box-shadow: 3px 3px 0px 0px #1f1f1f;
+  color: #fff;
+  box-shadow: 2px 2px 0px 0px #1f1f1f;
 }
 </style>
