@@ -5,7 +5,7 @@ import { useRoute, useRouter } from 'vue-router'
 const API_URL = ''
 const route = useRoute()
 const router = useRouter()
-const projectId = route.params.id || null
+const projectId = route.params.id
 
 const currentTab = ref('pt')
 
@@ -24,7 +24,8 @@ const error = ref(null)
 const uploadMessage = ref('')
 const imagePreview = ref(null)
 
-const pageTitle = computed(() => (projectId.value ? 'Editar Projeto' : 'Adicionar Novo Projeto'))
+const pageTitle = computed(() => (projectId ? 'Editar Projeto' : 'Adicionar Novo Projeto'))
+
 
 const getToken = () => localStorage.getItem('authToken')
 
@@ -58,7 +59,7 @@ const handleImageUpload = async (event) => {
 
 onMounted(async () => {
   await fetchCategories()
-  if (projectId.value) {
+  if (projectId) {
     try {
       const res = await fetch(`${API_URL}/api/projects/${projectId.value}`)
       if (res.ok) {
