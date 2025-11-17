@@ -12,7 +12,6 @@ WORKDIR /app
 COPY --from=base /app/node_modules ./node_modules
 COPY ./src ./src
 COPY ./scripts ./scripts
-COPY ./.env ./.env
 
 # --- ADICIONE ESTA LINHA ---
 # Precisamos do package.json para o npm start
