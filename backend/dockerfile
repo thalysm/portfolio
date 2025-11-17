@@ -1,0 +1,24 @@
+# Estágio 1: Instalar dependências
+FROM node:20-alpine AS base
+WORKDIR /app
+# Copia os package.json primeiro para cache
+COPY package.json package-lock.json* ./
+# Instala dependências de produção
+RUN npm install --omit=dev
+
+# Estágio 2: Produção
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=base /app/node_modules ./node_modules
+COPY ./src ./src
+COPY ./scripts ./scripts
+COPY ./.env ./.env
+
+# --- ADICIONE ESTA LINHA ---
+# Precisamos do package.json para o npm start
+COPY package.json ./
+# -------------------------
+
+# Expõe a porta do .env (5000)
+EXPOSE 5000
+CMD ["npm", "start"]

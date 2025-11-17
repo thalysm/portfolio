@@ -1,0 +1,38 @@
+# ESTÁGIO 1: Build da Aplicação Vue.js
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# ESTÁGIO 2: Servidor de Produção (usando Node + Vite Preview)
+FROM node:20-alpine AS final
+
+WORKDIR /app
+
+# Argumento que vem do docker-compose
+ARG VITE_PROXY_TARGET
+
+# Define a variável de ambiente DENTRO do container
+ENV VITE_PROXY_TARGET=${VITE_PROXY_TARGET:-http://localhost:5000}
+
+# --- CORREÇÃO AQUI ---
+# Copia os arquivos de dependência E o vite.config.js
+COPY package.json package-lock.json* ./
+COPY vite.config.js ./ 
+
+# Instala TODAS as dependências (incluindo 'vite' que é devDependency)
+# (Igual ao Dockerfile original)
+RUN npm install
+
+# Copia a pasta 'dist' construída do estágio anterior
+COPY --from=builder /app/dist ./dist
+
+# --- ATUALIZAÇÃO IMPORTANTE ---
+# Agora o sed vai encontrar o /app/vite.config.js
+RUN sed -i "s|http://localhost:5000|${VITE_PROXY_TARGET}|g" /app/vite.config.js
+
+EXPOSE 4173
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0"]
