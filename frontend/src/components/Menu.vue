@@ -1,11 +1,14 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import PhotoMenu from '@/assets/images/PhotoMenu.png'
+import LanguageSwitcher from './LanguageSwitcher.vue'
 
+const { t } = useI18n()
 const isMobileMenuOpen = ref(false)
 const selectedItem = ref('home')
-const isScrolled = ref(false) // <-- Adicionado
+const isScrolled = ref(false)
 
 const sections = ['home', 'resume', 'projects', 'blog', 'contact']
 
@@ -15,11 +18,7 @@ const closeMobileMenu = () => {
 
 const handleScroll = () => {
   const scrollY = window.scrollY
-
-  // Lógica para o menu fixo
-  isScrolled.value = scrollY > 10 // <-- Adicionado (true se rolar > 10px)
-
-  // Lógica existente para destacar a seção
+  isScrolled.value = scrollY > 10
   let currentSection = ''
   const offset = 150
 
@@ -46,7 +45,9 @@ onUnmounted(() => {
 
 <template>
   <header class="menu" :class="{ 'is-scrolled': isScrolled }">
-    <img :src="PhotoMenu" class="photo-menu" />
+    <RouterLink to="/#home" @click="closeMobileMenu">
+      <img :src="PhotoMenu" class="photo-menu" />
+    </RouterLink>
 
     <button class="menu-toggle" @click="isMobileMenuOpen = !isMobileMenuOpen">
       <span></span>
@@ -60,38 +61,39 @@ onUnmounted(() => {
         class="menu-item"
         :class="{ selected: selectedItem === 'home' }"
         @click="closeMobileMenu"
-        >Home</RouterLink
+        >{{ t('home') }}</RouterLink
       >
       <RouterLink
         to="/#resume"
         class="menu-item"
         :class="{ selected: selectedItem === 'resume' }"
         @click="closeMobileMenu"
-        >Resume</RouterLink
+        >{{ t('resume') }}</RouterLink
       >
       <RouterLink
         to="/#projects"
         class="menu-item"
         :class="{ selected: selectedItem === 'projects' }"
         @click="closeMobileMenu"
-        >Projects</RouterLink
+        >{{ t('projects') }}</RouterLink
       >
       <RouterLink
         to="/#blog"
         class="menu-item"
         :class="{ selected: selectedItem === 'blog' }"
         @click="closeMobileMenu"
-        >Blog</RouterLink
+        >{{ t('blog') }}</RouterLink
       >
       <RouterLink
         to="/#contact"
         class="menu-item"
         :class="{ selected: selectedItem === 'contact' }"
         @click="closeMobileMenu"
-        >Contact</RouterLink
+        >{{ t('contact') }}</RouterLink
       >
+      <LanguageSwitcher />
     </div>
-
+    
     <div class="hidden-photo"></div>
   </header>
 </template>
