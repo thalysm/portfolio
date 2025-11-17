@@ -1,164 +1,103 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-defineProps({
-  currentStyle: String
-})
+defineProps({ currentStyle: String })
 
+const { t, locale } = useI18n()
 const API_URL = ''
 
-const categories = ref(['All', 'Web Development', 'Application', 'Web Design'])
+const categories = ref([])
 const selectedCategory = ref('All')
-
 const currentPage = ref(1)
 const itemsPerPage = ref(6)
-
 const allProjects = ref([])
 
-onMounted(async () => {
-  await fetchProjects()
-})
+// Helper para pegar texto traduzido de objeto
+const getLoc = (obj) => obj ? (obj[locale.value] || obj.pt || obj) : ''
+
+const fetchCategories = async () => {
+  try {
+    const res = await fetch(`${API_URL}/api/categories`)
+    if (res.ok) categories.value = await res.json()
+  } catch (e) { console.error(e) }
+}
 
 const fetchProjects = async () => {
   try {
-    const response = await fetch(`${API_URL}/api/projects`)
-    if (!response.ok) {
-      throw new Error('Falha ao buscar projetos')
-    }
-    allProjects.value = await response.json()
-  } catch (error) {
-    console.error('Erro ao buscar projetos:', error)
-    allProjects.value = []
-  }
+    const res = await fetch(`${API_URL}/api/projects`)
+    if (res.ok) allProjects.value = await res.json()
+  } catch (e) { console.error(e) }
 }
 
-const getProjectImageUrl = (imagePath) => {
-  if (!imagePath) {
-    return ''
-  }
-  return `${API_URL}${imagePath}`
-}
-
-const filteredProjects = computed(() => {
-  if (selectedCategory.value === 'All') {
-    return allProjects.value
-  }
-  return allProjects.value.filter((project) => project.category === selectedCategory.value)
+onMounted(async () => {
+  await fetchCategories()
+  await fetchProjects()
 })
 
-const totalPages = computed(() => {
-  return Math.ceil(filteredProjects.value.length / itemsPerPage.value)
+const getProjectImageUrl = (path) => path ? `${API_URL}${path}` : ''
+
+const filteredProjects = computed(() => {
+  if (selectedCategory.value === 'All') return allProjects.value
+  // Filtra comparando o ID da categoria
+  return allProjects.value.filter(p => {
+    const catId = typeof p.category === 'object' ? p.category._id : p.category
+    return catId === selectedCategory.value
+  })
 })
 
 const paginatedProjects = computed(() => {
-  if (totalPages.value > 0 && currentPage.value > totalPages.value) {
-    currentPage.value = totalPages.value
-  }
-
   const start = (currentPage.value - 1) * itemsPerPage.value
-  const end = start + itemsPerPage.value
-  return filteredProjects.value.slice(start, end)
+  return filteredProjects.value.slice(start, start + itemsPerPage.value)
 })
 
-function setCategory(category) {
-  selectedCategory.value = category
-  currentPage.value = 1
-}
-
-function goToPage(page) {
-  if (page >= 1 && page <= totalPages.value) {
-    currentPage.value = page
-  }
-}
-
-function prevPage() {
-  if (currentPage.value > 1) {
-    currentPage.value--
-  }
-}
-
-function nextPage() {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value++
-  }
-}
+const totalPages = computed(() => Math.ceil(filteredProjects.value.length / itemsPerPage.value))
 </script>
 
 <template>
   <section class="section-projects">
     <div class="section-padding">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title">{{ t('projects') }}</h2>
 
       <div class="projects-filter">
-        <button
-          v-for="category in categories"
-          :key="category"
-          @click="setCategory(category)"
-          class="filter-button"
-          :class="{ active: selectedCategory === category }"
+        <button 
+          class="filter-button" 
+          :class="{ active: selectedCategory === 'All' }"
+          @click="selectedCategory = 'All'; currentPage = 1"
         >
-          {{ category }}
+          {{ t('all') }}
+        </button>
+        <button
+          v-for="cat in categories"
+          :key="cat._id"
+          @click="selectedCategory = cat._id; currentPage = 1"
+          class="filter-button"
+          :class="{ active: selectedCategory === cat._id }"
+        >
+          {{ getLoc(cat.name) }}
         </button>
       </div>
 
       <div class="projects-grid">
         <div v-for="project in paginatedProjects" :key="project._id" class="project-card">
-          <img
-            :src="getProjectImageUrl(project.image)"
-            :alt="project.title"
-            class="project-image"
-          />
+          <img :src="getProjectImageUrl(project.image)" :alt="getLoc(project.title)" class="project-image" />
           <div class="project-info">
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
-            
-            
+            <h3>{{ getLoc(project.title) }}</h3>
+            <p>{{ getLoc(project.description) }}</p>
             <div class="project-tags">
               <span v-for="tag in project.tags" :key="tag" class="tag">{{ tag }}</span>
             </div>
-            <a 
-              v-if="project.projectLink"
-              :href="project.projectLink"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link-button submit-button"
-            >
-              Ver Projeto
-            </a>
+            <a v-if="project.projectLink" :href="project.projectLink" target="_blank" class="submit-button" style="text-decoration:none; text-align:center; margin-top:10px; display:block;">{{ t('viewProject') }}</a>
+            <RouterLink :to="{name: 'project-detail', params: {id: project._id}}" class="submit-button" style="text-decoration:none; text-align:center; margin-top:10px; display:block;">{{ t('details') }}</RouterLink>
           </div>
         </div>
       </div>
 
-      <div v-if="paginatedProjects.length === 0" class="no-projects-message" style="text-align: center; margin-top: 20px;">
-        <p>Nenhum projeto encontrado.</p>
-      </div>
-
       <div class="pagination-controls" v-if="totalPages > 1">
-        <button @click="prevPage" :disabled="currentPage === 1" class="pagination-button">
-          Prev
-        </button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          @click="goToPage(page)"
-          class="pagination-button"
-          :class="{ active: currentPage === page }"
-        >
-          {{ page }}
-        </button>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="pagination-button">
-          Next
-        </button>
+        <button @click="currentPage--" :disabled="currentPage === 1" class="pagination-button">{{ t('prev') }}</button>
+        <span>{{ currentPage }} / {{ totalPages }}</span>
+        <button @click="currentPage++" :disabled="currentPage === totalPages" class="pagination-button">{{ t('next') }}</button>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-.project-link-button {
-  display: inline-block;
-  text-decoration: none;
-  text-align: center;
-  margin-top: 15px; /* Espaço entre a descrição e o botão */
-}
-</style>
