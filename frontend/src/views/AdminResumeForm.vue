@@ -87,7 +87,7 @@ const handleSubmit = async () => {
       </div>
       <div class="form-group">
         <label>Descrição (PT)</label>
-        <textarea v-model="item.description.pt" class="form-textarea" rows="3" required></textarea>
+        <textarea v-model="item.description.pt" class="form-textarea" rows="3"></textarea>
       </div>
       <div class="form-group">
         <label>Título (EN)</label>
@@ -95,7 +95,7 @@ const handleSubmit = async () => {
       </div>
       <div class="form-group">
         <label>Descrição (EN)</label>
-        <textarea v-model="item.description.en" class="form-textarea" rows="3" required></textarea>
+        <textarea v-model="item.description.en" class="form-textarea" rows="3"></textarea>
       </div>
 
       <button type="submit" class="submit-button">Salvar</button>
