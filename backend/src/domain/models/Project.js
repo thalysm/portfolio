@@ -2,15 +2,13 @@ const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
   title: {
-    type: String,
-    required: true,
-    trim: true,
+    pt: { type: String, required: true, trim: true },
+    en: { type: String, required: true, trim: true }
   },
   description: {
-    type: String,
-    required: true,
+    pt: { type: String, required: true },
+    en: { type: String, required: true }
   },
-  // Armazena a URL da imagem (ex: /uploads/nome-da-imagem.png)
   image: {
     type: String,
     required: true,
@@ -20,7 +18,8 @@ const projectSchema = new mongoose.Schema({
     default: [],
   },
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
     required: true,
   },
   projectLink: {
@@ -28,7 +27,7 @@ const projectSchema = new mongoose.Schema({
     trim: true,
   }
 }, {
-  timestamps: true // Adiciona createdAt e updatedAt
+  timestamps: true
 });
 
 const Project = mongoose.model('Project', projectSchema);
