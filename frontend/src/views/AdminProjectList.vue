@@ -7,17 +7,14 @@ const projects = ref([])
 const loading = ref(true)
 const error = ref(null)
 
-// Helper para buscar o token
 const getToken = () => {
   return localStorage.getItem('authToken')
 }
 
-// Função para buscar os projetos
 const fetchProjects = async () => {
   loading.value = true
   error.value = null
   try {
-    // GET /api/projects é público, não precisamos de token aqui
     const response = await fetch(`${API_URL}/api/projects`)
     if (!response.ok) {
       throw new Error('Falha ao carregar projetos')
@@ -30,7 +27,6 @@ const fetchProjects = async () => {
   }
 }
 
-// Função para apagar um projeto
 const deleteProject = async (id) => {
   if (!window.confirm('Tem a certeza que quer apagar este projeto?')) {
     return
@@ -54,14 +50,12 @@ const deleteProject = async (id) => {
       throw new Error('Falha ao apagar o projeto.')
     }
 
-    // Remove o projeto da lista local sem precisar de um novo fetch
     projects.value = projects.value.filter(p => p._id !== id)
   } catch (err) {
     error.value = err.message
   }
 }
 
-// Buscar projetos quando o componente for montado
 onMounted(fetchProjects)
 </script>
 
@@ -81,16 +75,16 @@ onMounted(fetchProjects)
       <table class="admin-table">
         <thead>
           <tr>
-            <th>Título</th>
-            <th>Categoria</th>
+            <th>Título (PT)</th>
             <th>Data</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="project in projects" :key="project._id">
-            <td data-label="Título">{{ project.title }}</td>
-            <td data-label="Categoria">{{ project.category }}</td>
+            <td data-label="Título">
+              {{ project.title?.pt || project.title }}
+            </td>
             <td data-label="Data">{{ new Date(project.createdAt).toLocaleDateString() }}</td>
             <td data-label="Ações" class="actions-cell">
               <RouterLink
@@ -129,7 +123,6 @@ onMounted(fetchProjects)
   font-weight: 700;
 }
 
-/* O .submit-button já vem do neobrutalism.scss */
 .submit-button {
   text-decoration: none;
   font-size: 16px;
@@ -148,7 +141,7 @@ onMounted(fetchProjects)
 }
 
 .admin-table-container {
-  overflow-x: auto; /* Para tabelas em ecrãs pequenos */
+  overflow-x: auto;
 }
 
 .admin-table {
@@ -178,7 +171,6 @@ onMounted(fetchProjects)
 }
 
 .action-button {
-  /* Reutilizando estilos base do submit-button */
   padding: 8px 12px;
   font-size: 14px;
   font-weight: 600;
@@ -191,21 +183,20 @@ onMounted(fetchProjects)
 }
 
 .action-button.edit {
-  background-color: #ceff1a; /* Amarelo/Verde Neobrutalism */
+  background-color: #ceff1a;
   color: #000;
 }
 
 .action-button.delete {
-  background-color: #ffcccc; /* Vermelho claro */
+  background-color: #ffcccc;
   color: #cc0000;
   border-color: #cc0000;
   box-shadow: 3px 3px 0px 0px #cc0000;
 }
 
-/* --- Responsividade da Tabela --- */
 @media (max-width: 768px) {
   .admin-table thead {
-    display: none; /* Esconde cabeçalho em mobile */
+    display: none;
   }
   .admin-table tr {
     display: block;
@@ -219,14 +210,12 @@ onMounted(fetchProjects)
     border: none;
     border-bottom: 1px solid #ddd;
     position: relative;
-    padding-left: 50%; /* Espaço para o "label" */
+    padding-left: 50%;
   }
   .admin-table td:last-child {
     border-bottom: 0;
   }
-
   .admin-table td::before {
-    /* Adiciona o "label" (ex: "Título:") */
     content: attr(data-label);
     position: absolute;
     left: 10px;
@@ -234,7 +223,6 @@ onMounted(fetchProjects)
     font-weight: 700;
     text-align: left;
   }
-
   .actions-cell {
     justify-content: flex-end;
   }
