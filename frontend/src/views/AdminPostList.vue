@@ -7,17 +7,14 @@ const posts = ref([])
 const loading = ref(true)
 const error = ref(null)
 
-// Helper para buscar o token
 const getToken = () => {
   return localStorage.getItem('authToken')
 }
 
-// Função para buscar os posts
 const fetchPosts = async () => {
   loading.value = true
   error.value = null
   try {
-    // GET /api/posts é público
     const response = await fetch(`${API_URL}/api/posts`)
     if (!response.ok) {
       throw new Error('Falha ao carregar posts')
@@ -30,7 +27,6 @@ const fetchPosts = async () => {
   }
 }
 
-// Função para apagar um post
 const deletePost = async (id) => {
   if (!window.confirm('Tem a certeza que quer apagar este post?')) {
     return
@@ -54,14 +50,12 @@ const deletePost = async (id) => {
       throw new Error('Falha ao apagar o post.')
     }
 
-    // Remove o post da lista local
     posts.value = posts.value.filter(p => p._id !== id)
   } catch (err) {
     error.value = err.message
   }
 }
 
-// Buscar posts quando o componente for montado
 onMounted(fetchPosts)
 </script>
 
@@ -81,16 +75,20 @@ onMounted(fetchPosts)
       <table class="admin-table">
         <thead>
           <tr>
-            <th>Título</th>
-            <th>Snippet (Resumo)</th>
+            <th>Título (PT)</th>
+            <th>Snippet (PT)</th>
             <th>Data</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="post in posts" :key="post._id">
-            <td data-label="Título">{{ post.title }}</td>
-            <td data-label="Snippet">{{ post.snippet }}</td>
+            <td data-label="Título">
+              {{ post.title?.pt || post.title }}
+            </td>
+            <td data-label="Snippet">
+              {{ post.snippet?.pt || post.snippet }}
+            </td>
             <td data-label="Data">{{ new Date(post.createdAt).toLocaleDateString() }}</td>
             <td data-label="Ações" class="actions-cell">
               <RouterLink
@@ -115,7 +113,6 @@ onMounted(fetchPosts)
 </template>
 
 <style scoped>
-/* Copiamos os estilos exatos do AdminProjectList para manter a consistência */
 .admin-header {
   display: flex;
   justify-content: space-between;
@@ -201,7 +198,6 @@ onMounted(fetchPosts)
   box-shadow: 3px 3px 0px 0px #cc0000;
 }
 
-/* Responsividade da Tabela */
 @media (max-width: 768px) {
   .admin-table thead {
     display: none;
@@ -223,7 +219,6 @@ onMounted(fetchPosts)
   .admin-table td:last-child {
     border-bottom: 0;
   }
-
   .admin-table td::before {
     content: attr(data-label);
     position: absolute;
@@ -232,7 +227,6 @@ onMounted(fetchPosts)
     font-weight: 700;
     text-align: left;
   }
-
   .actions-cell {
     justify-content: flex-end;
   }
