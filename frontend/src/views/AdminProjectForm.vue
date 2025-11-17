@@ -61,7 +61,7 @@ onMounted(async () => {
   await fetchCategories()
   if (projectId) {
     try {
-      const res = await fetch(`${API_URL}/api/projects/${projectId.value}`)
+      const res = await fetch(`${API_URL}/api/projects/${projectId}`)
       if (res.ok) {
         const data = await res.json()
         if (typeof data.title === 'string') data.title = { pt: data.title, en: '' }
@@ -83,8 +83,8 @@ onMounted(async () => {
 const handleSubmit = async () => {
   isSubmitting.value = true
   const token = getToken()
-  const method = projectId.value ? 'PUT' : 'POST'
-  const url = projectId.value ? `${API_URL}/api/projects/${projectId.value}` : `${API_URL}/api/projects`
+  const method = projectId ? 'PUT' : 'POST'
+  const url = projectId ? `${API_URL}/api/projects/${projectId}` : `${API_URL}/api/projects`
 
   const payload = {
     ...project.value,
