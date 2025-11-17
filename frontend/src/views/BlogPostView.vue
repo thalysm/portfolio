@@ -2,6 +2,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useHead } from '@vueuse/head'
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
 
@@ -21,8 +22,71 @@ const localizedPost = computed(() => {
   return {
     ...post.value,
     title: get(post.value.title),
-    content: get(post.value.content)
+    content: get(post.value.content),
+    snippet: get(post.value.snippet),
+    image: post.value.image
   }
+})
+
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return '';
+}
+
+useHead({
+  title: computed(() => localizedPost.value ? `${localizedPost.value.title} | Thalys Marques` : 'Blog - Thalys Marques'),
+  meta: [
+    {
+      name: 'description',
+      content: computed(() => localizedPost.value?.snippet || 'Leia este artigo no meu blog.')
+    },
+    {
+      property: 'og:url',
+      content: computed(() => typeof window !== 'undefined' ? window.location.href : '')
+    },
+    {
+      property: 'og:title',
+      content: computed(() => localizedPost.value?.title)
+    },
+    {
+      property: 'og:description',
+      content: computed(() => localizedPost.value?.snippet)
+    },
+    {
+      property: 'og:image',
+      content: computed(() => {
+        if (!localizedPost.value?.image) return '';
+        if (localizedPost.value.image.startsWith('http')) return localizedPost.value.image;
+        return `${getBaseUrl()}${localizedPost.value.image}`;
+      })
+    },
+    {
+      property: 'og:type',
+      content: 'article'
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:title',
+      content: computed(() => localizedPost.value?.title)
+    },
+    {
+      name: 'twitter:description',
+      content: computed(() => localizedPost.value?.snippet)
+    },
+    {
+      name: 'twitter:image',
+      content: computed(() => {
+        if (!localizedPost.value?.image) return '';
+        if (localizedPost.value.image.startsWith('http')) return localizedPost.value.image;
+        return `${getBaseUrl()}${localizedPost.value.image}`;
+      })
+    }
+  ]
 })
 
 onMounted(async () => {
@@ -37,6 +101,11 @@ onMounted(async () => {
     loading.value = false
   }
 })
+
+const getPostImageUrl = (imagePath) => {
+  if (!imagePath) return ''
+  return `${API_URL}${imagePath}`
+}
 
 const formatDate = (isoString) => {
   if (!isoString) return ''
@@ -62,11 +131,11 @@ const formatDate = (isoString) => {
 
       <article v-if="localizedPost" class="post-container">
         <h1 class="post-title">{{ localizedPost.title }}</h1>
-        <span class="post-date">{{ formatDate(localizedPost.createdAt) }}</span>
+        <span class="post-date">{{ formatDate(post.createdAt) }}</span>
 
         <img
           v-if="localizedPost.image"
-          :src="`${API_URL}${localizedPost.image}`"
+          :src="getPostImageUrl(localizedPost.image)"
           :alt="localizedPost.title"
           class="post-image"
         />
@@ -74,7 +143,7 @@ const formatDate = (isoString) => {
         <div class="ProseMirror" v-html="localizedPost.content"></div>
 
         <div class="blog-tags">
-          <span v-for="tag in localizedPost.tags" :key="tag" class="tag">{{ tag }}</span>
+          <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
         </div>
       </article>
 
@@ -90,7 +159,6 @@ const formatDate = (isoString) => {
 </template>
 
 <style>
-/* Estilos globais para o conteúdo do Tiptap (v-html) */
 .ProseMirror {
   outline: none;
   color: inherit;
@@ -134,7 +202,7 @@ const formatDate = (isoString) => {
   max-height: 450px;
   object-fit: cover;
   margin-bottom: 30px;
-  border: 3px solid #000; /* Estilo padrão, temas sobrescrevem se necessário */
+  border: 3px solid #000;
   border-radius: 8px;
 }
 
