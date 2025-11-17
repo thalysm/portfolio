@@ -107,8 +107,6 @@ const handleLogin = async () => {
 .login-container {
   max-width: 500px;
   width: 100%;
-  margin: 0 20px; /* Adiciona margem em ecrãs pequenos */
+  margin: 0 20px;
 }
-
-/* O neobrutalism.scss vai aplicar estilos ao .section-title, .form-input, etc. */
 </style>
