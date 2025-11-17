@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 defineProps({
   currentStyle: String
 })
 
+const { t } = useI18n()
 const API_URL = ''
 
 // Refs para os campos do formulário
@@ -22,9 +24,8 @@ const handleSubmit = async () => {
   successMessage.value = ''
   errorMessage.value = ''
 
-  // Validação simples
   if (!name.value || !email.value || !message.value) {
-    errorMessage.value = 'Por favor, preencha todos os campos.'
+    errorMessage.value = t('fillAllFields')
     return
   }
 
@@ -44,20 +45,19 @@ const handleSubmit = async () => {
     })
 
     if (response.status === 201) {
-      // Sucesso
-      successMessage.value = 'Mensagem enviada com sucesso! Obrigado.'
+      successMessage.value = t('successMessage')
       // Limpa o formulário
       name.value = ''
       email.value = ''
       message.value = ''
     } else {
-      // Erro do servidor (ex: 400 Bad Request)
+      // Erro do servidor
       const data = await response.json()
-      errorMessage.value = data.message || 'Ocorreu um erro ao enviar a mensagem.'
+      errorMessage.value = data.message || t('serverError')
     }
   } catch (error) {
     console.error('Erro ao enviar formulário:', error)
-    errorMessage.value = 'Falha na comunicação com o servidor. Tente novamente.'
+    errorMessage.value = t('serverError')
   } finally {
     isSubmitting.value = false
   }
@@ -66,23 +66,22 @@ const handleSubmit = async () => {
 
 <template>
   <section class="section-contact section-padding">
-    <h2 class="section-title">Contact</h2>
+    <h2 class="section-title">{{ t('contact') }}</h2>
     <div class="contact-content">
       <p>
-        Feel free to reach out! Whether you have a question, a project proposal, or just want to
-        connect, my inbox is always open.
+        {{ t('contactDesc') }}
       </p>
       <form class="contact-form" @submit.prevent="handleSubmit">
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="name">{{ t('name') }}</label>
           <input type="text" id="name" name="name" class="form-input" v-model="name" />
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">{{ t('email') }}</label>
           <input type="email" id="email" name="email" class="form-input" v-model="email" />
         </div>
         <div class="form-group">
-          <label for="message">Message</label>
+          <label for="message">{{ t('message') }}</label>
           <textarea
             id="message"
             name="message"
@@ -108,7 +107,7 @@ const handleSubmit = async () => {
         </div>
 
         <button type="submit" class="submit-button" :disabled="isSubmitting">
-          {{ isSubmitting ? 'Enviando...' : 'Send Message' }}
+          {{ isSubmitting ? t('sending') : t('sendMessage') }}
         </button>
       </form>
     </div>
