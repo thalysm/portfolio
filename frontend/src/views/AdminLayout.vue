@@ -25,40 +25,74 @@ const logout = () => {
 
     <aside class="admin-sidebar" :class="{ 'is-open': isMobileMenuOpen }">
       <h3 class="admin-title">Admin Panel</h3>
+      
       <nav class="admin-nav">
-        <RouterLink
-          to="/admin/dashboard" class="menu-item"
+        <RouterLink 
+          to="/admin/dashboard" 
+          class="menu-item" 
           active-class="selected"
           @click="closeMobileMenu"
-          >Dashboard</RouterLink
         >
-        <RouterLink
-          to="/admin/projects"
-          class="menu-item"
+          Dashboard
+        </RouterLink>
+
+        <div class="nav-divider">Gerenciamento</div>
+
+        <RouterLink 
+          to="/admin/categories" 
+          class="menu-item" 
           active-class="selected"
           @click="closeMobileMenu"
-          >Projetos</RouterLink
         >
-        <RouterLink
-          to="/admin/posts"
-          class="menu-item"
+          Categorias
+        </RouterLink>
+
+        <RouterLink 
+          to="/admin/resume" 
+          class="menu-item" 
           active-class="selected"
           @click="closeMobileMenu"
-          >Posts</RouterLink
         >
-        <RouterLink
-          to="/admin/messages"
-          class="menu-item"
+          Currículo
+        </RouterLink>
+
+        <RouterLink 
+          to="/admin/projects" 
+          class="menu-item" 
           active-class="selected"
           @click="closeMobileMenu"
-          >Mensagens</RouterLink
         >
+          Projetos
+        </RouterLink>
+
+        <RouterLink 
+          to="/admin/posts" 
+          class="menu-item" 
+          active-class="selected"
+          @click="closeMobileMenu"
+        >
+          Blog Posts
+        </RouterLink>
+
+        <div class="nav-divider">Sistema</div>
+
+        <RouterLink 
+          to="/admin/messages" 
+          class="menu-item" 
+          active-class="selected"
+          @click="closeMobileMenu"
+        >
+          Mensagens
+        </RouterLink>
       </nav>
+
       <div class="admin-footer">
-        <RouterLink to="/" class="menu-item back-to-site" @click="closeMobileMenu"
-          >Voltar ao Site</RouterLink
-        >
-        <button @click="logout" class="menu-item logout-button">Logout</button>
+        <RouterLink to="/" class="menu-item back-to-site" @click="closeMobileMenu">
+          Ver Site
+        </RouterLink>
+        <button @click="logout" class="menu-item logout-button">
+          Sair
+        </button>
       </div>
     </aside>
 
@@ -69,132 +103,159 @@ const logout = () => {
 </template>
 
 <style scoped>
-/* Aplicamos o Neobrutalism via classe no root, mas precisamos do layout */
-
 .admin-layout {
-  display: grid;
-  grid-template-columns: 250px 1fr; /* Sidebar fixa e conteúdo flexível */
+  display: flex;
   min-height: 100vh;
   background-color: #f2f2f2;
 }
 
+/* --- Sidebar Styles --- */
 .admin-sidebar {
-  display: flex;
-  flex-direction: column;
-  padding: 30px 20px;
+  width: 260px;
   background-color: #f2f2f2;
   border-right: 3px solid #000;
-  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   position: fixed;
-  width: 250px;
-  left: 0;
+  height: 100vh;
   top: 0;
-  transition: transform 0.3s ease-out;
-  z-index: 1100; /* Acima do menu-toggle */
+  left: 0;
+  z-index: 100;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
 }
 
 .admin-title {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
   margin-bottom: 30px;
+  text-transform: uppercase;
+  border-bottom: 3px solid #000;
+  padding-bottom: 15px;
 }
 
 .admin-nav {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
-/* --- ESTILO DE BOTÃO ATUALIZADO --- */
-.admin-sidebar .menu-item {
+.nav-divider {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding-left: 5px;
+}
+
+/* --- Menu Item Styles (Neobrutalism) --- */
+.menu-item {
   display: block;
   text-decoration: none;
+  padding: 12px 15px;
   font-weight: 600;
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-align: center;
-
-  /* Estilos base (como o .filter-button) */
-  background-color: transparent;
-  color: #333;
-  border: 3px solid black;
-  transition: all 0.2s ease;
-  box-shadow: none; /* Sem sombra por padrão */
-}
-
-.admin-sidebar .menu-item:hover {
-  background-color: #e0e0e0;
-}
-
-/* Estilo ATIVO (baseado no .filter-button.active) */
-.admin-sidebar .menu-item.selected {
-  background: #5093fe;
   color: #000;
-  border: 3px solid black;
-  box-shadow: 5px 5px 0px 0px #1f1f1f;
+  border: 3px solid #000;
+  background-color: #fff;
+  box-shadow: 3px 3px 0px 0px #000;
+  transition: all 0.2s ease;
+  text-align: center;
+  cursor: pointer;
 }
-/* --- FIM DA ATUALIZAÇÃO --- */
 
+.menu-item:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+.menu-item:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000;
+}
+
+.menu-item.selected {
+  background-color: #5093fe; /* Azul do tema */
+  color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000;
+}
+
+/* --- Footer Styles --- */
 .admin-footer {
   margin-top: auto;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+.back-to-site {
+  background-color: #ceff1a; /* Verde Neon */
+}
+
 .logout-button {
-  width: 100%;
-  background-color: #f2f2f2;
+  background-color: #ffcccc; /* Vermelho claro */
 }
 
 .logout-button:hover {
-  background-color: #ffcccc;
-  border-color: #cc0000;
-  box-shadow: 5px 5px 0px 0px #cc0000;
-  color: #cc0000;
+  background-color: #ff9999;
 }
 
-.back-to-site {
-  background-color: #e0e0e0;
-}
-
+/* --- Content Area --- */
 .admin-content {
-  grid-column: 2 / 3;
+  flex: 1;
+  margin-left: 260px; /* Largura da sidebar */
   padding: 40px;
+  width: calc(100% - 260px);
 }
 
+/* --- Mobile Menu Toggle --- */
 .admin-menu-toggle {
-  display: none; /* Escondido no desktop */
+  display: none;
   position: fixed;
   top: 15px;
-  left: 15px;
-  z-index: 1200; /* Acima da sidebar */
+  right: 15px;
+  z-index: 200;
+  background: #fff;
+  border: 3px solid #000;
+  padding: 10px;
+  cursor: pointer;
 }
 
-/* --- Media Queries para Responsividade --- */
-@media (max-width: 768px) {
-  .admin-layout {
-    grid-template-columns: 1fr; /* Coluna única */
-  }
+.admin-menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #000;
+  margin: 5px 0;
+}
 
+/* --- Responsividade --- */
+@media (max-width: 768px) {
   .admin-sidebar {
-    transform: translateX(-100%); /* Escondido por padrão */
+    transform: translateX(-100%);
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2);
   }
 
   .admin-sidebar.is-open {
     transform: translateX(0);
-    box-shadow: 10px 0px 0px 100vw rgba(0, 0, 0, 0.5); /* Overlay */
   }
 
   .admin-content {
-    grid-column: 1 / 2; /* Ocupa a coluna única */
+    margin-left: 0;
+    width: 100%;
     padding: 20px;
-    padding-top: 80px; /* Espaço para o botão de menu */
+    padding-top: 70px; /* Espaço para o botão toggle */
   }
 
   .admin-menu-toggle {
-    display: flex;
+    display: block;
   }
 }
 </style>
