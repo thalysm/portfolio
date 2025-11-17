@@ -1,11 +1,11 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 defineProps({
   currentStyle: String
 })
 
-const placeholderImg = new URL('/src/assets/images/PhotoSectionHome.png', import.meta.url)
+const API_URL = ''
 
 const categories = ref(['All', 'Web Development', 'Application', 'Web Design'])
 const selectedCategory = ref('All')
@@ -13,52 +13,31 @@ const selectedCategory = ref('All')
 const currentPage = ref(1)
 const itemsPerPage = ref(6)
 
-const allProjects = ref([
-  {
-    title: 'Portfolio Website',
-    description:
-      'This very portfolio, built with Vue.js 3, demonstrating various UI design styles.',
-    image: placeholderImg,
-    tags: ['Vue.js', 'Vite', 'SCSS'],
-    category: 'Web Development'
-  },
-  {
-    title: 'E-commerce App',
-    description:
-      'A concept mobile app for online shopping, designed in Figma and built with React Native.',
-    image: placeholderImg,
-    tags: ['React Native', 'Figma', 'UI/UX'],
-    category: 'Application'
-  },
-  {
-    title: 'Data Analysis Tool',
-    description: 'A Python-based tool for visualizing complex datasets for academic research.',
-    image: placeholderImg,
-    tags: ['Python', 'Data Viz'],
-    category: 'Web Development'
-  },
-  {
-    title: 'UI/UX Redesign Agency',
-    description: 'A complete redesign concept for a digital agency, focusing on modern UI trends.',
-    image: placeholderImg,
-    tags: ['Figma', 'Adobe XD', 'UI/UX'],
-    category: 'Web Design'
-  },
-  {
-    title: 'Fitness Tracker Mobile',
-    description: 'Mobile application to track workouts and nutrition, built using Flutter.',
-    image: placeholderImg,
-    tags: ['Flutter', 'Firebase', 'Mobile'],
-    category: 'Application'
-  },
-  {
-    title: 'Dynamic Blog Platform',
-    description: 'A full-stack blog platform developed with Vue.js and a Node.js backend.',
-    image: placeholderImg,
-    tags: ['Vue.js', 'Node.js', 'Full-Stack'],
-    category: 'Web Development'
+const allProjects = ref([])
+
+onMounted(async () => {
+  await fetchProjects()
+})
+
+const fetchProjects = async () => {
+  try {
+    const response = await fetch(`${API_URL}/api/projects`)
+    if (!response.ok) {
+      throw new Error('Falha ao buscar projetos')
+    }
+    allProjects.value = await response.json()
+  } catch (error) {
+    console.error('Erro ao buscar projetos:', error)
+    allProjects.value = []
   }
-])
+}
+
+const getProjectImageUrl = (imagePath) => {
+  if (!imagePath) {
+    return ''
+  }
+  return `${API_URL}${imagePath}`
+}
 
 const filteredProjects = computed(() => {
   if (selectedCategory.value === 'All') {
@@ -123,19 +102,38 @@ function nextPage() {
       </div>
 
       <div class="projects-grid">
-        <div v-for="project in paginatedProjects" :key="project.title" class="project-card">
-          <img :src="project.image" :alt="project.title" class="project-image" />
+        <div v-for="project in paginatedProjects" :key="project._id" class="project-card">
+          <img
+            :src="getProjectImageUrl(project.image)"
+            :alt="project.title"
+            class="project-image"
+          />
           <div class="project-info">
             <h3>{{ project.title }}</h3>
             <p>{{ project.description }}</p>
+            
+            
             <div class="project-tags">
               <span v-for="tag in project.tags" :key="tag" class="tag">{{ tag }}</span>
             </div>
+            <a 
+              v-if="project.projectLink"
+              :href="project.projectLink"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link-button submit-button"
+            >
+              Ver Projeto
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="pagination-controls">
+      <div v-if="paginatedProjects.length === 0" class="no-projects-message" style="text-align: center; margin-top: 20px;">
+        <p>Nenhum projeto encontrado.</p>
+      </div>
+
+      <div class="pagination-controls" v-if="totalPages > 1">
         <button @click="prevPage" :disabled="currentPage === 1" class="pagination-button">
           Prev
         </button>
@@ -155,3 +153,12 @@ function nextPage() {
     </div>
   </section>
 </template>
+
+<style scoped>
+.project-link-button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 15px; /* Espaço entre a descrição e o botão */
+}
+</style>
