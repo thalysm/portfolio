@@ -22,6 +22,10 @@ const projectSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
+  },
+  projectLink: {
+    type: String,
+    trim: true,
   }
 }, {
   timestamps: true // Adiciona createdAt e updatedAt
