@@ -1,15 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router' // 1. Importar o RouterLink
+import { RouterLink } from 'vue-router'
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t, locale } = useI18n()
 const API_URL = ''
 const blogPosts = ref([])
 const loading = ref(true)
 const error = ref(null)
 
 const currentStyle = ref('neobrutalism')
+
+const getLoc = (obj) => {
+  if (!obj) return ''
+  if (typeof obj === 'string') return obj
+  return obj[locale.value] || obj.pt || ''
+}
 
 onMounted(async () => {
   await fetchPosts()
@@ -40,12 +48,13 @@ const formatDate = (isoString) => {
   if (!isoString) return ''
   try {
     const date = new Date(isoString)
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(locale.value, {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     })
-  } catch (e) {
+  } catch (error) {
+    console.error('Error formatting date:', error)
     return isoString
   }
 }
@@ -72,8 +81,8 @@ const formatDate = (isoString) => {
           <img :src="getPostImageUrl(post.image)" :alt="post.title" class="blog-image" />
           <div class="blog-info">
             <span class="blog-date">{{ formatDate(post.createdAt) }}</span>
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.snippet }}</p>
+            <h3>{{ getLoc(post.title) }}</h3>
+            <p>{{ getLoc(post.snippet) }}</p>
             <div class="blog-tags">
               <span v-for="tag in post.tags" :key="tag" class="tag">{{ tag }}</span>
             </div>
