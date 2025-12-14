@@ -21,10 +21,12 @@ h4,
 h5 {
   margin: 0;
 }
+
 * {
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
+
 .menu {
   display: flex;
   align-items: center;
@@ -36,14 +38,17 @@ h5 {
   .hidden-photo {
     visibility: hidden;
   }
+
   .menu-items {
     display: flex;
     align-items: center;
+
     .menu-item {
       font-weight: 700;
       cursor: pointer;
       padding: 10px 25px;
       text-decoration: none;
+
       &.selected {
         border: 1px solid black;
       }
@@ -81,13 +86,14 @@ h5 {
 .section-home {
   display: flex;
   align-items: center;
-  min-height: 100vh; /* NOVO: Garante altura total */
-  padding: 80px 0; /* NOVO: Adiciona padding */
+  min-height: 100vh;
+  padding: 80px 0;
   margin: auto;
   max-width: 1000px;
-  margin-top: 0; /* AJUSTADO: Remove margem superior desnecessária com min-height */
+  margin-top: 0;
   scroll-margin-top: 100px;
 }
+
 .label {
   display: flex;
   align-items: center;
@@ -95,44 +101,53 @@ h5 {
   margin-right: 20px;
   margin-top: 15px;
   border: 1px solid black;
+
   p {
     margin-left: 10px;
   }
 }
+
 .label-internal {
   display: flex;
   align-items: center;
 }
+
 .hability-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+
   .label {
     white-space: nowrap;
   }
+
   .label:first-child {
     margin-left: 0;
   }
 }
+
 .photo-section-home {
   width: 400px;
   margin-left: 20px;
 }
+
 .span-section-home {
   font-size: 16px;
 }
+
 .name-section-home {
   font-size: 65px;
 }
+
 .text-section-home {
   font-size: 16px;
 }
 
 .section-padding {
-  min-height: 100vh; /* NOVO: Garante altura total */
-  display: flex; /* NOVO: Para centralizar o conteúdo */
-  flex-direction: column; /* NOVO: Para centralizar o conteúdo */
-  justify-content: center; /* NOVO: Centraliza o conteúdo verticalmente */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 80px 0;
   margin: auto;
   max-width: 1000px;
@@ -163,14 +178,14 @@ h5 {
 .timeline-group {
   position: relative;
   margin-bottom: 40px;
-  /* NOVA LINHA: Adicionando a linha vertical a cada grupo */
+
   &::after {
     content: '';
     position: absolute;
     width: 4px;
-    background-color: #e0e0e0; /* Cor padrão da linha */
+    background-color: #e0e0e0;
     top: 0;
-    bottom: 0; /* Linha se estende até o final do grupo */
+    bottom: 0;
     left: 50%;
     margin-left: -2px;
     z-index: 1;
@@ -204,7 +219,7 @@ h5 {
 .timeline-header {
   text-align: center;
   margin-bottom: 30px;
-  background-color: #f2f2f2; /* Cor de fundo do body */
+  background-color: #f2f2f2;
   display: inline-block;
   position: relative;
   transform: translateX(-50%);
@@ -247,7 +262,6 @@ h5 {
   z-index: 5;
 }
 
-/* NOVO: Remove bottom margin from the last item in a group */
 .timeline-group .timeline-item:last-child {
   margin-bottom: 0;
 }
@@ -259,18 +273,18 @@ h5 {
   text-align: right;
 
   .timeline-dot {
-    right: -8px; /* CORRIGIDO: 16px (dot width) / 2 = 8px para centralizar na linha */
+    right: -8px;
     left: auto;
     border-color: #f2f2f2;
   }
-  /* O conteúdo em si (o card) deve ter o texto alinhado à esquerda internamente */
+
   .timeline-content {
     text-align: left;
   }
 }
 
 .timeline-left::after {
-  right: -20px; /* Posição da linha de conexão com a linha central */
+  right: -20px;
   left: auto;
 }
 
@@ -281,13 +295,13 @@ h5 {
   text-align: left;
 
   .timeline-dot {
-    left: -8px; /* CORRIGIDO: 16px (dot width) / 2 = 8px para centralizar na linha */
+    left: -8px;
     border-color: #f2f2f2;
   }
 }
 
 .timeline-right::after {
-  left: -20px; /* Posição da linha de conexão com a linha central */
+  left: -20px;
 }
 
 .timeline-dot {
@@ -295,9 +309,9 @@ h5 {
   top: 20px;
   width: 16px;
   height: 16px;
-  background-color: #5093fe; /* Cor de destaque */
+  background-color: #5093fe;
   border-radius: 50%;
-  border: 3px solid #f2f2f2; /* Cor de fundo do body para o efeito de "borda" */
+  border: 3px solid #f2f2f2;
   z-index: 10;
 }
 
@@ -307,19 +321,21 @@ h5 {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 0;
-  text-align: left; /* Mantém o texto alinhado à esquerda dentro do card */
+  text-align: left;
 
   h4 {
     font-size: 18px;
     font-weight: 600;
     margin: 0 0 5px 0;
   }
+
   h5 {
     font-size: 14px;
     font-weight: 500;
     margin: 0 0 10px 0;
     color: #888;
   }
+
   p {
     font-size: 14px;
     line-height: 1.6;
@@ -329,10 +345,9 @@ h5 {
 
 /* --- Projects Section --- */
 .projects-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  justify-content: center; /* opcional */
 }
 
 .project-image {
@@ -343,10 +358,12 @@ h5 {
 
 .project-info {
   padding: 20px;
+
   h3 {
     font-size: 20px;
     margin: 0 0 10px 0;
   }
+
   p {
     font-size: 14px;
     margin-bottom: 15px;
@@ -358,6 +375,7 @@ h5 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
   .tag {
     font-size: 12px;
     padding: 4px 8px;
@@ -389,15 +407,18 @@ h5 {
 
 .blog-info {
   padding: 20px;
+
   h3 {
     font-size: 20px;
     margin: 5px 0 10px 0;
   }
+
   p {
     font-size: 14px;
     margin-bottom: 15px;
     color: #555;
   }
+
   .blog-date {
     font-size: 12px;
     color: #888;
@@ -408,6 +429,7 @@ h5 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
   .tag {
     font-size: 12px;
     padding: 4px 8px;
@@ -423,7 +445,7 @@ h5 {
   margin: 0 auto;
   text-align: center;
 
-  > p {
+  >p {
     font-size: 16px;
     color: #555;
     margin-bottom: 30px;
@@ -439,6 +461,7 @@ h5 {
 
 .form-group {
   text-align: left;
+
   label {
     display: block;
     margin-bottom: 8px;
@@ -482,10 +505,12 @@ h5 {
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
+
   p {
     font-size: 14px;
     color: #888;
     line-height: 1.6;
+
     &:last-child {
       margin-top: 5px;
     }
@@ -557,13 +582,15 @@ h5 {
 
   .section-home {
     flex-direction: column-reverse;
-    min-height: auto; /* Remove altura fixa no mobile */
+    min-height: auto;
+    /* Remove altura fixa no mobile */
     margin-top: 50px;
     padding: 0 20px 80px 20px;
     scroll-margin-top: 80px;
   }
+
   .section-padding {
-    min-height: auto; /* Remove altura fixa no mobile */
+    min-height: auto;
     justify-content: flex-start;
   }
 
@@ -608,44 +635,42 @@ h5 {
   .resume-timeline-wrapper::after {
     content: none;
   }
+
   .timeline-group::after {
     content: none;
   }
 
-  /* 2. Remove o "dot" que não é mais necessário */
   .timeline-dot {
     display: none;
   }
 
-  /* 3. Reseta os headers para serem blocos normais (a correção principal!) */
   .timeline-header,
   .resume-subtitle.timeline-header.header-education,
   .resume-subtitle.timeline-header.header-experience {
     position: relative;
-    left: auto !important; /* Reseta o 'left' dos temas */
-    transform: none !important; /* Reseta o 'transform' */
+    left: auto !important;
+    transform: none !important;
     width: 100%;
-    text-align: center; /* Centraliza o header (Ex: "Education") */
+    text-align: center;
     margin-bottom: 25px;
   }
 
-  /* 4. Faz o conteúdo do header (ícone + texto) ficar centralizado */
   .header-content {
-    flex-direction: column; /* Isto você já tem, o que é ótimo */
-    align-items: center; /* Centraliza o ícone e o texto */
-    gap: 10px; /* Isto você já tem */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 
-  /* 5. Faz os cards ocuparem a largura total, sem padding lateral estranho */
   .timeline-item,
   .timeline-left,
   .timeline-right {
     width: 100%;
     left: 0;
-    padding-left: 10px; /* Apenas um padding leve */
-    padding-right: 10px; /* Apenas um padding leve */
-    text-align: left; /* Mantém o texto do card alinhado à esquerda */
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
   }
+
   /* --- Other Mobile Sections --- */
   .section-padding {
     padding: 60px 20px;
@@ -691,8 +716,6 @@ h5 {
   }
 }
 
-/* --- NOVOS ESTILOS BASE (Projects Filter & Pagination) --- */
-
 .projects-filter {
   display: flex;
   justify-content: center;
@@ -724,15 +747,13 @@ h5 {
 }
 
 .project-info p {
-  /* Propriedades removidas: flex: 1, overflow: hidden, text-overflow: ellipsis */
   font-size: 14px;
   margin-bottom: 15px;
   color: #555;
 }
 
 .project-card {
-  width: 300px; /* largura fixa */
-  /* height: 420px; <-- REMOVIDO */
+  width: auto;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
