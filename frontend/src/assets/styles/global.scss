@@ -521,6 +521,11 @@ h5 {
 /* --- Media Queries para Responsividade --- */
 /* ---------------------------------------------- */
 
+/* Default: hide dots */
+.carousel-dots {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .menu {
     justify-content: space-between;
@@ -682,10 +687,66 @@ h5 {
     margin-bottom: 40px;
   }
 
+  /* Carousel horizontal no mobile (Versão Melhorada) */
   .projects-grid,
   .blog-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 20px;
+    padding-bottom: 25px;
+    /* Espaço para o dedo/scroll */
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+
+    /* Remove a scrollbar visualmente */
+    scrollbar-width: none;
+
+    /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+      /* Chrome/Safari */
+    }
+  }
+
+  /* Garante que os cards (filhos diretos) se comportem como itens de carrossel */
+  .projects-grid>*,
+  .blog-grid>* {
+    flex: 0 0 100%;
+    /* Force 100% width of container (not screen) */
+    width: 100%;
+    max-width: none;
+    scroll-snap-align: start;
+    /* Align to start of container */
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Remove estilos de filho antigos se existirem */
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #ccc;
+      /* Default dot color */
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.active {
+        background-color: #5093fe;
+        /* Active dot color */
+        transform: scale(1.2);
+      }
+    }
   }
 }
 

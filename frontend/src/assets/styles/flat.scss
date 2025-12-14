@@ -277,3 +277,20 @@ body.theme-flat .pagination-button:disabled,
 body.theme-flat .filter-button:disabled {
   cursor: url('/cursors/flat/not-allowed.svg'), not-allowed;
 }
+
+/* Carousel Dots Flat */
+.flat .carousel-dots {
+  .dot {
+    background: #e0e0e0;
+    width: 12px;
+    height: 12px;
+    transition: all 0.2s;
+    border-radius: 50%;
+
+    &.active {
+      background: #5093fe;
+      width: 24px; // Stretch effect
+      border-radius: 6px;
+    }
+  }
+}

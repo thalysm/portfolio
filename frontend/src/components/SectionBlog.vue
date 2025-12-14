@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 
@@ -12,6 +12,12 @@ const API_URL = ''
 
 const blogPosts = ref([])
 
+// Carousel State
+const scrollContainer = ref(null)
+const activeIndex = ref(0)
+const autoPlayInterval = ref(null)
+const isMobile = ref(false)
+
 // Helper para pegar o texto traduzido (se for objeto) ou a string (se for antigo)
 const getLoc = (obj) => {
   if (!obj) return ''
@@ -19,8 +25,69 @@ const getLoc = (obj) => {
   return obj[locale.value] || obj.pt || ''
 }
 
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+}
+
+const scrollToIndex = (index) => {
+  if (!scrollContainer.value) return
+  const container = scrollContainer.value
+  const card = container.querySelector('.blog-card')
+  if (!card) return
+  
+  const cardWidth = card.offsetWidth
+  const gap = 20
+  const targetX = index * (cardWidth + gap)
+  
+  container.scrollTo({
+    left: targetX,
+    behavior: 'smooth'
+  })
+}
+
+const handleScroll = () => {
+  if (!scrollContainer.value) return
+  const container = scrollContainer.value
+  const card = container.querySelector('.blog-card')
+  if (!card) return
+  
+  const cardWidth = card.offsetWidth
+  const gap = 20
+  const scrollX = container.scrollLeft
+  
+  const index = Math.round(scrollX / (cardWidth + gap))
+  if (index !== activeIndex.value && index >= 0 && index < blogPosts.value.length) {
+    activeIndex.value = index
+  }
+}
+
+const startAutoPlay = () => {
+  if (!isMobile.value) return
+  pauseAutoPlay()
+  autoPlayInterval.value = setInterval(() => {
+    let nextIndex = activeIndex.value + 1
+    if (nextIndex >= blogPosts.value.length) nextIndex = 0
+    scrollToIndex(nextIndex)
+  }, 4000)
+}
+
+const pauseAutoPlay = () => {
+  if (autoPlayInterval.value) {
+    clearInterval(autoPlayInterval.value)
+    autoPlayInterval.value = null
+  }
+}
+
 onMounted(async () => {
   await fetchPosts()
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+  setTimeout(startAutoPlay, 1000)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+  pauseAutoPlay()
 })
 
 const fetchPosts = async () => {
@@ -61,7 +128,15 @@ const formatDate = (isoString) => {
   <section class="section-blog">
     <div class="section-padding">
       <h2 class="section-title">{{ t('blog') }}</h2>
-      <div class="blog-grid">
+      <div 
+        class="blog-grid" 
+        ref="scrollContainer"
+        @scroll="handleScroll"
+        @touchstart="pauseAutoPlay"
+        @touchend="startAutoPlay"
+        @mouseenter="pauseAutoPlay"
+        @mouseleave="startAutoPlay"
+      >
         <RouterLink
           v-for="post in blogPosts"
           :key="post._id"
@@ -79,6 +154,17 @@ const formatDate = (isoString) => {
             </div>
           </div>
         </RouterLink>
+      </div>
+
+      <!-- Carousel Dots -->
+      <div class="carousel-dots" v-if="blogPosts.length > 1">
+        <span 
+          v-for="(post, index) in blogPosts" 
+          :key="index"
+          class="dot"
+          :class="{ active: activeIndex === index }"
+          @click="scrollToIndex(index)"
+        ></span>
       </div>
 
       <div v-if="blogPosts.length === 0" style="text-align: center; margin-top: 20px">

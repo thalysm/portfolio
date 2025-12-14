@@ -469,3 +469,19 @@ body.theme-neomorphism .pagination-button:disabled,
 body.theme-neomorphism .filter-button:disabled {
   cursor: url('/cursors/neomorphism/not-allowed.svg'), not-allowed;
 }
+
+/* Carousel Dots Neomorphism */
+.neomorphism .carousel-dots {
+  .dot {
+    background: #e0e0e0;
+    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
+    border: none;
+    width: 12px;
+    height: 12px;
+
+    &.active {
+      box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff;
+      background: #5093fe;
+    }
+  }
+}

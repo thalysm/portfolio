@@ -420,3 +420,19 @@ body.theme-glassmorphism .theme-button {
 body.theme-glassmorphism {
   cursor: url('/cursors/glassmorphism/default.svg'), auto;
 }
+
+/* Carousel Dots Glassmorphism */
+.glassmorphism .carousel-dots {
+  .dot {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &.active {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      transform: scale(1.2);
+    }
+  }
+}
