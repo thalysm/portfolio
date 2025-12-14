@@ -19,11 +19,11 @@ onMounted(async () => {
 
 const education = computed(() => resumeItems.value
   .filter(i => i.type === 'Education')
-  .sort((a, b) => new Date(a.startDate) - new Date(b.startDate)))
+  .sort((a, b) => new Date(b.startDate) - new Date(a.startDate)))
 
 const experience = computed(() => resumeItems.value
   .filter(i => i.type === 'Experience')
-  .sort((a, b) => new Date(a.startDate) - new Date(b.startDate)))
+  .sort((a, b) => new Date(b.startDate) - new Date(a.startDate)))
 
 const formatPeriod = (item) => {
   return `${item.startDate} - ${item.isPresent ? (locale.value === 'pt' ? 'Presente' : 'Present') : item.endDate}`
