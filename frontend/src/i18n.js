@@ -8,7 +8,7 @@ const messages = {
     projects: 'Projects',
     blog: 'Blog',
     contact: 'Contact',
-    
+
     // Actions & Labels
     viewProject: 'View Project',
     viewMore: 'View More',
@@ -17,16 +17,24 @@ const messages = {
     prev: 'Prev',
     next: 'Next',
     all: 'All',
-    
+
+    // Duolingo
+    languages: 'Languages',
+    streakDays: 'day streak',
+    totalXp: 'Total XP',
+    lang_it: 'Italian',
+    lang_en: 'English',
+    lang_pt: 'Portuguese',
+
     // Resume
     education: 'Education',
     experience: 'Experience',
     present: 'Present',
-    
+
     // Home Section
     hi: 'Hi, My name is',
     homeDescription: 'Computer Engineer specialized in Data Science and UI/UX, passionate about transforming complex problems into intelligent digital solutions. I work at the intersection of technology, design, and strategy, building end-to-end products with a strong focus on usability and innovation. I have solid experience with machine learning, recommendation systems, mobile and web development, and data visualization, always aiming for impact and exceptional user experience.',
-    
+
     // Contact Section
     contactDesc: 'Feel free to reach out! Whether you have a question, a project proposal, or just want to connect, my inbox is always open.',
     name: 'Name',
@@ -48,7 +56,7 @@ const messages = {
     projects: 'Projetos',
     blog: 'Blog',
     contact: 'Contato',
-    
+
     // Ações & Etiquetas
     viewProject: 'Ver Projeto',
     viewMore: 'Ver Mais',
@@ -57,16 +65,24 @@ const messages = {
     prev: 'Ant',
     next: 'Prox',
     all: 'Todos',
-    
+
+    // Duolingo
+    languages: 'Idiomas',
+    streakDays: 'dias de ofensiva',
+    totalXp: 'XP Total',
+    lang_it: 'Italiano',
+    lang_en: 'Inglês',
+    lang_pt: 'Português',
+
     // Currículo
     education: 'Educação',
     experience: 'Experiência',
     present: 'Presente',
-    
+
     // Home Section
     hi: 'Olá, meu nome é',
     homeDescription: 'Engenheiro de Computação especializado em Ciência de Dados e UI/UX, apaixonado por transformar problemas complexos em soluções digitais inteligentes. Atuo na interseção entre tecnologia, design e estratégia, construindo produtos completos, de ponta a ponta. Tenho experiência sólida com machine learning, sistemas de recomendação, desenvolvimento mobile/web e visualização de dados, sempre com foco em impacto e experiência do usuário.',
-    
+
     // Contact Section
     contactDesc: 'Sinta-se à vontade para entrar em contato! Se tiver uma pergunta, uma proposta de projeto ou apenas quiser se conectar, minha caixa de entrada está sempre aberta.',
     name: 'Nome',

@@ -12,6 +12,7 @@ const postRoutes = require('./http/routes/postRoutes');
 const contactRoutes = require('./http/routes/contactRoutes');
 const categoryRoutes = require('./http/routes/categoryRoutes');
 const resumeRoutes = require('./http/routes/resumeRoutes');
+const duolingoRoutes = require('./http/routes/duolingoRoutes');
 
 const app = express();
 
@@ -32,5 +33,6 @@ app.use('/api', postRoutes);
 app.use('/api', contactRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', resumeRoutes);
+app.use('/api', duolingoRoutes);
 
 module.exports = app;

@@ -1,24 +1,31 @@
 body.theme-glassmorphism {
-  background-image: linear-gradient(
-    to bottom,
-    rgb(0, 102, 161) 0%,
-    rgb(60, 55, 122) 10%,
-    /* roxo */ rgb(90, 40, 120) 20%,
-    rgb(60, 55, 122) 25%,
-    rgb(40, 70, 140) 30%,
-    /* azul */ rgb(0, 82, 130) 40%,
-    rgb(122, 22, 91) 50%,
-    /* magenta */ rgb(160, 25, 85) 60%,
-    rgb(180, 30, 80) 70%,
-    /* rosa */ rgb(200, 40, 90) 80%,
-    rgb(120, 30, 100) 90%,
-    rgb(0, 41, 64) 100% /* azul escuro */
-  );
-  background-size: 100% 600vh; /* Aumentado para 6x a altura da tela */
+  background-image: linear-gradient(to bottom,
+      rgb(0, 102, 161) 0%,
+      rgb(60, 55, 122) 10%,
+      /* roxo */
+      rgb(90, 40, 120) 20%,
+      rgb(60, 55, 122) 25%,
+      rgb(40, 70, 140) 30%,
+      /* azul */
+      rgb(0, 82, 130) 40%,
+      rgb(122, 22, 91) 50%,
+      /* magenta */
+      rgb(160, 25, 85) 60%,
+      rgb(180, 30, 80) 70%,
+      /* rosa */
+      rgb(200, 40, 90) 80%,
+      rgb(120, 30, 100) 90%,
+      rgb(0, 41, 64) 100%
+      /* azul escuro */
+    );
+  background-size: 100% 600vh;
+  /* Aumentado para 6x a altura da tela */
   background-repeat: no-repeat;
-  background-color: rgb(0, 41, 64); /* Cor de fallback (última cor do gradiente) */
+  background-color: rgb(0, 41, 64);
+  /* Cor de fallback (última cor do gradiente) */
   min-height: 100vh;
 }
+
 .glassmorphism {
   .photo-menu {
     background: rgba(255, 255, 255, 0.15);
@@ -68,6 +75,7 @@ body.theme-glassmorphism {
     transition: background 0.3s ease-in-out;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
+
   .label-internal {
     background-color: #ffffff00;
   }
@@ -85,11 +93,15 @@ body.theme-glassmorphism {
   }
 
   .resume-timeline-wrapper::after {
-    content: none; /* Remover a linha global */
+    content: none;
+    /* Remover a linha global */
   }
+
   .timeline-group::after {
-    background: rgba(255, 255, 255, 0.3); /* Cor da linha do grupo */
+    background: rgba(255, 255, 255, 0.3);
+    /* Cor da linha do grupo */
   }
+
   .timeline-dot {
     background-color: #fff;
     border: 3px solid #000;
@@ -104,14 +116,19 @@ body.theme-glassmorphism {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
 
+  .section-duolingo {
+    background-color: #ffffff00;
+  }
+
   .post-title {
     color: #fff;
   }
+
   .post-date {
     color: #ddd !important;
   }
 
-  .ProseMirror{
+  .ProseMirror {
     color: #eee;
   }
 
@@ -125,9 +142,11 @@ body.theme-glassmorphism {
     h4 {
       color: #fff;
     }
+
     h5 {
       color: #ddd;
     }
+
     p {
       color: #eee;
     }
@@ -143,6 +162,7 @@ body.theme-glassmorphism {
     h3 {
       color: #fff;
     }
+
     p {
       color: #eee;
     }
@@ -175,6 +195,62 @@ body.theme-glassmorphism {
     transition: background 0.3s ease;
   }
 
+  /* Duolingo Card Glassmorphism */
+  .duolingo-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    color: #333;
+
+    .stat-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      color: #fff;
+    }
+
+    .xp-container {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      margin-bottom: 20px;
+
+      .xp-label {
+        color: #ddd;
+      }
+
+      .xp-value {
+        color: #fff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    .course-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      transition: background 0.3s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .lang-title {
+        color: #fff;
+      }
+
+      .lang-xp {
+        color: #ccc;
+      }
+    }
+  }
+
   .blog-card {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
@@ -185,9 +261,11 @@ body.theme-glassmorphism {
     .blog-date {
       color: #ddd;
     }
+
     h3 {
       color: #fff;
     }
+
     p {
       color: #eee;
     }
@@ -198,7 +276,7 @@ body.theme-glassmorphism {
     color: #fff !important;
   }
 
-  .contact-content > p {
+  .contact-content>p {
     color: #eee;
   }
 
@@ -238,6 +316,7 @@ body.theme-glassmorphism {
       color: #eee;
     }
   }
+
   .social-icon {
     filter: brightness(0) invert(1);
   }
@@ -255,6 +334,7 @@ body.theme-glassmorphism {
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #fff;
   }
+
   .filter-button.active {
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.3);
@@ -265,9 +345,11 @@ body.theme-glassmorphism {
     color: #fff;
     background: rgba(255, 255, 255, 0.1);
   }
+
   .pagination-button.active {
     background: rgba(255, 255, 255, 0.25);
   }
+
   .pagination-button:disabled {
     color: #888;
     background: rgba(0, 0, 0, 0.1);
@@ -285,14 +367,13 @@ body.theme-glassmorphism {
 }
 
 body.theme-glassmorphism {
-  background-image: linear-gradient(
-    to bottom,
-    rgb(0, 102, 161),
-    rgb(60, 55, 122),
-    rgb(90, 40, 120),
-    rgb(0, 41, 64)
-  );
-  background-size: 100% 200%; /* altura 2x a tela */
+  background-image: linear-gradient(to bottom,
+      rgb(0, 102, 161),
+      rgb(60, 55, 122),
+      rgb(90, 40, 120),
+      rgb(0, 41, 64));
+  background-size: 100% 200%;
+  /* altura 2x a tela */
   background-repeat: no-repeat;
   animation: moveGradient 40s linear infinite;
 }
@@ -301,9 +382,11 @@ body.theme-glassmorphism {
   0% {
     background-position: 0% 0%;
   }
+
   50% {
     background-position: 0% 100%;
   }
+
   100% {
     background-position: 0% 0%;
   }

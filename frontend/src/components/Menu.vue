@@ -10,7 +10,7 @@ const isMobileMenuOpen = ref(false)
 const selectedItem = ref('home')
 const isScrolled = ref(false)
 
-const sections = ['home', 'resume', 'projects', 'blog', 'contact']
+const sections = ['home', 'resume', 'duolingo', 'projects', 'blog', 'contact']
 
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
@@ -69,6 +69,13 @@ onUnmounted(() => {
         :class="{ selected: selectedItem === 'resume' }"
         @click="closeMobileMenu"
         >{{ t('resume') }}</RouterLink
+      >
+      <RouterLink
+        to="/#duolingo"
+        class="menu-item"
+        :class="{ selected: selectedItem === 'duolingo' }"
+        @click="closeMobileMenu"
+        >{{ t('languages') }}</RouterLink
       >
       <RouterLink
         to="/#projects"
