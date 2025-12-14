@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { auth } from '@/utils/api'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +18,7 @@ const router = createRouter({
       redirect: { name: 'admin-dashboard' },
       children: [
         { path: 'dashboard', name: 'admin-dashboard', component: () => import('../views/AdminDashboard.vue') },
-        
+
         // Categorias
         { path: 'categories', name: 'admin-categories', component: () => import('../views/AdminCategoryList.vue') },
         { path: 'categories/form/:id?', name: 'admin-category-new', component: () => import('../views/AdminCategoryForm.vue') },
@@ -48,8 +49,10 @@ const router = createRouter({
   }
 })
 
+
+
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !localStorage.getItem('authToken')) next({ name: 'login' })
+  if (to.meta.requiresAuth && !auth.isAuthenticated()) next({ name: 'login' })
   else next()
 })
 

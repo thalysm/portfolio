@@ -1,35 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { apiFetch } from '@/utils/api'
 
 const API_URL = ''
 const messages = ref([])
 const loading = ref(true)
 const error = ref(null)
 
-// Helper para buscar o token
-const getToken = () => {
-  return localStorage.getItem('authToken')
-}
+// Helper para buscar o token (NÃO MAIS NECESSÁRIO COM apiFetch)
+// const getToken = () => { ... }
 
 // Função para buscar as mensagens
 const fetchMessages = async () => {
   loading.value = true
   error.value = null
-  const token = getToken()
-
-  if (!token) {
-    error.value = 'Não autorizado. Faça login novamente.'
-    loading.value = false
-    return
-  }
 
   try {
     // GET /api/messages é protegido
-    const response = await fetch(`${API_URL}/api/messages`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
+    const response = await apiFetch('/messages')
     if (!response.ok) {
       throw new Error('Falha ao carregar mensagens')
     }
@@ -47,18 +35,9 @@ const deleteMessage = async (id) => {
     return
   }
 
-  const token = getToken()
-  if (!token) {
-    error.value = 'Não autorizado. Faça login novamente.'
-    return
-  }
-
   try {
-    const response = await fetch(`${API_URL}/api/messages/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+    const response = await apiFetch(`/messages/${id}`, {
+      method: 'DELETE'
     })
 
     if (!response.ok) {

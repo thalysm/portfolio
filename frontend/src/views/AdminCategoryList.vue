@@ -7,12 +7,12 @@ const categories = ref([])
 const loading = ref(true)
 const error = ref(null)
 
-const getToken = () => localStorage.getItem('authToken')
+import { apiFetch } from '@/utils/api'
 
 const fetchCategories = async () => {
   loading.value = true
   try {
-    const response = await fetch(`${API_URL}/api/categories`)
+    const response = await apiFetch('/categories')
     if (!response.ok) throw new Error('Erro ao buscar categorias')
     categories.value = await response.json()
   } catch (err) {
@@ -24,11 +24,9 @@ const fetchCategories = async () => {
 
 const deleteCategory = async (id) => {
   if (!confirm('Apagar esta categoria?')) return
-  const token = getToken()
   try {
-    const res = await fetch(`${API_URL}/api/categories/${id}`, {
-      method: 'DELETE',
-      headers: { 'Authorization': `Bearer ${token}` }
+    const res = await apiFetch(`/categories/${id}`, {
+      method: 'DELETE'
     })
     if (!res.ok) throw new Error('Erro ao apagar')
     categories.value = categories.value.filter(c => c._id !== id)

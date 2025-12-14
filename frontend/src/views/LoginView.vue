@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { auth } from '@/utils/api'
 
 const API_URL = ''
 const router = useRouter()
@@ -36,7 +37,8 @@ const handleLogin = async () => {
     }
 
     // Login bem-sucedido
-    localStorage.setItem('authToken', data.token)
+    auth.setToken(data.token)
+    auth.setRefreshToken(data.refreshToken)
 
     // Redireciona para o dashboard do admin
     router.push({ name: 'admin-dashboard' })

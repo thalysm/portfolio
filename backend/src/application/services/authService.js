@@ -19,29 +19,58 @@ class AuthService {
    * @returns {Promise<string>} O token JWT.
    */
   async loginUser(email, password) {
-    // 1. Encontrar o usuário
     const user = await userRepository.findByEmail(email);
     if (!user) {
       throw new Error('Credenciais inválidas');
     }
 
-    // 2. Comparar a senha
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       throw new Error('Credenciais inválidas');
     }
 
-    // 3. Gerar o token
     const payload = {
       id: user._id,
       email: user.email,
     };
 
     const token = jwt.sign(payload, JWT_SECRET, {
-      expiresIn: '24h', // Token expira em 24 horas
+      expiresIn: '15m',
     });
 
-    return token;
+    const refreshToken = jwt.sign({ id: user._id }, JWT_SECRET, {
+      expiresIn: '7d',
+    });
+
+    return { token, refreshToken };
+  }
+
+  /**
+   * Gera um novo access token a partir de um refresh token válido
+   * @param {string} refreshToken 
+   */
+  async refreshAccessToken(refreshToken) {
+    try {
+      const decoded = jwt.verify(refreshToken, JWT_SECRET);
+      const user = await userRepository.findById(decoded.id);
+
+      if (!user) {
+        throw new Error('Usuário não encontrado');
+      }
+
+      const payload = {
+        id: user._id,
+        email: user.email,
+      };
+
+      const newToken = jwt.sign(payload, JWT_SECRET, {
+        expiresIn: '15m',
+      });
+
+      return newToken;
+    } catch (error) {
+      throw new Error('Refresh token inválido ou expirado');
+    }
   }
 }
 
