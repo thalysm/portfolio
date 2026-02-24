@@ -56,16 +56,22 @@ export const apiFetch = async (endpoint, options = {}) => {
             } else {
                 // Refresh falhou (expirado ou inválido)
                 auth.clearTokens();
-                window.location.href = '/login'; // Força logout
+                if (window.location.pathname.startsWith('/admin')) {
+                    window.location.href = '/login';
+                }
             }
         } catch (e) {
             auth.clearTokens();
-            window.location.href = '/login';
+            if (window.location.pathname.startsWith('/admin')) {
+                window.location.href = '/login';
+            }
         }
     } else if (response.status === 401) {
         // 401 sem refresh token
         auth.clearTokens();
-        window.location.href = '/login';
+        if (window.location.pathname.startsWith('/admin')) {
+            window.location.href = '/login';
+        }
     }
 
     return response;
